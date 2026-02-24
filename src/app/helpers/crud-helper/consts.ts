@@ -1,4 +1,4 @@
-export const API_URL = 'http://apis.eeme.io/api'
+export const API_URL = 'https://apis.eeme.io/api'
 
 export const STORAGE_LINK = 'https://storage.googleapis.com/omneeyat_gcs'
 
