@@ -23,11 +23,10 @@ export default function TalentCard({ talent }: Props) {
     >
       {/* Avatar */}
       <div
-        className="relative mx-auto mb-3 rounded-full overflow-hidden transition-all group-hover:ring-2"
+        className="relative mx-auto mb-3 rounded-full overflow-hidden transition-all group-hover:ring-2 group-hover:ring-[#3bbab1]"
         style={{
           width: '80px',
           height: '80px',
-          ringColor: 'var(--color-primary)',
         }}
       >
         <img
