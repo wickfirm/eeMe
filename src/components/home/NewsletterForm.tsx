@@ -40,7 +40,7 @@ export default function NewsletterForm() {
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder={t('Your email address', 'Your email address')}
+        placeholder={t('Your email address', 'Your email address') as string}
         required
         className="w-full px-4 py-3 rounded-lg text-sm outline-none"
         style={{

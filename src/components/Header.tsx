@@ -75,7 +75,7 @@ export default function Header() {
             </svg>
             <input
               type="text"
-              placeholder={t('Looking for someone you love?', 'Looking for someone you love?')}
+              placeholder={t('Looking for someone you love?', 'Looking for someone you love?') as string}
               className="bg-transparent text-sm outline-none w-56"
               style={{ color: 'var(--color-text)', '::placeholder': { color: 'var(--color-text-muted)' } } as React.CSSProperties}
             />
