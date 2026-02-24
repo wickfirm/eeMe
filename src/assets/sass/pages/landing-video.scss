@@ -1,0 +1,105 @@
+.landing-video{
+    overflow-x: hidden;
+    font-family: $font-montserrat;
+    padding-top: 90px;
+    .video-recipient{
+        font-size: 35px;
+        line-height: 39px;
+        margin-top: 20px;
+        margin-bottom: 24px;
+        font-family: $font-bold-montserrat;
+        span{
+            font-weight: bold;
+        }
+    }
+    .social-container {
+        padding-top: 91px;
+    }
+    .social-container a {
+        padding: 10px;
+        font-size: 25px;
+        border-radius: 7px;
+        display: block;
+        line-height: 29px;
+        color: #ffffff;
+        margin-bottom: 20px;
+        text-decoration: none;
+        text-align: center;
+        background-color: #3BBAB1;
+        &.purple-bg{
+            background-color: #8461a6;
+        }
+        i{
+            margin: 0;
+        }
+
+    }
+    .hello-desc{
+        margin-top: 80px;
+        font-size: 20px;
+        .hello{
+            margin-bottom: 20px;
+        }
+        .s-lines{
+            position: absolute;
+            right: 0;
+        }
+        .from-to-statement{
+            line-height: 30px;
+        }
+    }
+    .aside-img{
+        position: absolute;
+        bottom: 69%;
+        right: 8px;
+        img{
+            width: 34px;
+        }
+    }
+
+
+
+    .social-container a:hover  {
+        background-color: #ffffff;
+        color: #3BBAB1;
+    }
+    .social-container a.purple-bg:hover  {
+        background-color: #ffffff;
+        color: #8461a6;
+    }
+
+    .talent-name-title {
+        font-family: $font-futura;
+        font-size: 40px;
+        line-height: 44px;
+        font-weight:bold;
+    }
+
+    .top-border{
+        border-style:6px solid $main-color;
+    }
+    hr{
+        margin-top: 24px;
+        margin-bottom: 24px;
+        border: 0;
+        border-top: 1px solid #eee;
+    }
+    .book-now:hover{
+        box-shadow: 5px 5px 12px #ffc396;
+    }
+
+    .talent-category {
+        margin-bottom: 20px;
+
+        .badge-omneeyat {
+            background-color: #a7c5c7;
+            color:#145258;
+            font-weight: 300;
+
+        }
+    }
+    .recipient-order{
+        font-size: 20px;
+        font-family: $font-roboto;
+    }
+}

@@ -1,0 +1,119 @@
+.banner-text {
+  text-align: left;
+}
+
+.banner-text h1 {
+  text-transform: uppercase;
+}
+
+.banner-desc {
+  text-align: justify;
+  margin-bottom: 35px;
+}
+
+.banner-btn-white{
+  text-transform: uppercase;
+  padding: 15px 50px;
+  border: 1px solid #003667;
+}
+
+.banner-btn-orange{
+  text-transform: uppercase;
+  padding: 15px 50px;
+  border: 1px solid #CE6B32;
+  background-color: #CE6B32;
+  color: #ffffff!important;
+}
+
+button{
+  text-transform: uppercase;
+}
+
+.btn-white>button, .btn-white a{
+  padding: 15px 50px!important;
+  border: 1px solid #003667!important;
+  background-color: transparent!important;
+  color: #003667!important;
+  text-transform: uppercase !important;
+}
+
+button:hover{
+  background-color: #003667!important;
+  color: #ffffff!important;
+}
+
+.btn-orange>button, .btn-orange a{
+  padding: 15px 50px!important;
+  border: 1px solid #CE6B32!important;
+  background-color: #CE6B32!important;
+  color: #ffffff!important;
+  text-transform: uppercase !important;
+}
+
+.slider-banner .banner-text{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slider-banner .banner-text h1{
+  margin-left: -15px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .banner {
+    text-align: center;
+  }
+
+  .slider-banner img {
+    max-width: fit-content;
+  }
+  .banner-shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 0 2000px RGBA(240, 240, 240, 0.5);
+    top: 0;
+    left: 0;
+  }
+
+  .slider-banner .banner-text, .slider-banner .banner-text p{
+    padding:0 35px;
+    text-align: center!important;
+  }
+
+
+  .slider-banner .banner-text .btn-white a, .slider-banner .banner-text .btn-orange a{
+    display: block;
+    text-align: center;
+    padding: 5px 15px!important;
+  }
+
+  .slider-banner .banner-text .btn-white, .slider-banner .banner-text .btn-orange{
+      max-width:55%;
+      margin: 0 auto;
+      text-align: center;
+  }
+
+
+  .banner h1{
+    text-align:center!important;
+    font-size:25px!important;
+  }
+  .banner p{
+    margin-right:0 !important;
+    text-align:center!important;
+  }
+  .banner .vc_btn3-container.vc_btn3-left {
+    text-align: center;
+  }
+  .banner{
+    background-size: cover;
+    box-shadow: inset 0 0 0 2000px RGBA(240,240,240,0.5);
+  }
+
+  .btn-white > button,.btn-white a{
+    padding:5px 15px!important;
+  }
+}

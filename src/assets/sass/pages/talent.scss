@@ -1,0 +1,457 @@
+section.talent {
+    font-family:$font-montserrat;
+    padding-top: 80px;
+    &.talent-section{
+        padding-top: 69px !important;
+    }
+    .section-heading{
+        font-family: $font-bold-montserrat;
+        font-size: 35px;
+    }
+    .talent-book-details{
+        color:#d3d3d3;
+        font-family:$font-roboto;
+        @if $text-align == 'right' {
+            font-size: 18px;
+            line-height: 26px;
+        }
+    }
+    .col-dark{
+        color:#d3d3d3;
+    }
+    .radio-label{
+        @if $text-align == 'right' {
+            padding-right:25px;
+        } @else {
+            padding-left: 5px;
+        }
+    }
+    .f-roboto{
+        font-family: $font-bold-roboto;
+    }
+
+    .talent-name {
+        text-transform: capitalize;
+        font-family: $font-bold-montserrat;
+        color: #ffffff;
+        @include fontSize(44);
+        &.font{
+
+            font-weight:bold;
+            font-size: 42px;
+            line-height: 46px;
+        }
+    }
+    .p-r{
+        padding-right: 0;
+    }
+.book-single-title{
+    font-family: $font-bold-roboto;
+    font-size: 18px;
+    margin-bottom: 12px;
+    color:white;
+}
+    .talent-category {
+        margin-bottom: 20px;
+
+        //.badge-omneeyat {
+        //    background-color: $lighter-color;
+        //    color: #ffffff;
+        //    font-weight: 300;
+        //
+        //}
+        .badge-omneeyat {
+            background-color: #a7c5c7;
+            color:#145258;
+            font-weight: 300;
+
+        }
+    }
+    .price{
+        border-radius: 50%;
+        width: 80px;
+        height:80px;
+        line-height: 80px;
+        background: #a7c5c7;
+        text-align: center;
+
+        span{
+            font-family:$font-futura;
+            font-size:23px;
+            line-height: 27px;
+            color:#145258;
+            text-align:center;
+        }
+    }
+    .profile-description {
+        font-family: $font-roboto;
+        @if $text-align == 'right' {
+            font-size: 18px;
+            line-height: 30px;
+        } @else {
+            font-size: 15px;
+            line-height: 22px;
+        }
+        text-align:$text-align;
+        padding-left: 15px;
+        color:#d3d3d3;
+        margin-top:20px;
+        p{
+            display: inline !important;
+        }
+
+    }
+
+    .talent-actions {
+        div {
+            display: inline-block;
+        }
+    }
+
+    .latest-omneeyat-title {
+        margin-bottom: 20px;
+        width: 160px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .talent-latest-videos {
+        width: 100%;
+
+        .video-box {
+            padding: 5px;
+            margin-bottom: 30px;
+
+            .video-description {
+                padding: 5px 5px 5px 10px;
+                background-color: $main-color;
+                color: #ffffff;
+
+                span {
+                    padding: 10px 10px 10px 0;
+                    @include fontSize(18);
+                }
+            }
+            .video-descr{
+                padding: 5px 5px 5px 10px;
+                background-color:#ffffff ;
+                color: $main-color;
+                font-family: $font-futura;
+                span {
+                    padding: 10px 10px 10px 0;
+                    @include fontSize(18);
+                }
+            }
+        }
+    }
+
+    .talent-book-form {
+        .form-group {
+            margin-bottom: 1.5rem;
+           .instruction{
+               font-family: $font-bold-roboto;
+                font-size: 17px;
+            }
+        }
+
+
+        textarea {
+            &.form-control {
+                //color: $main-color;
+
+                @include placeholder {
+                    @include fontSize(10);
+                    color: $lighter-color;
+                }
+            }
+        }
+
+        .talent-book-conditions {
+            color: #d3d3d3;
+            font-family: $font-roboto;
+            font-size: 12px;
+
+            //a {
+            //    color: $main-color;
+            //    text-decoration: underline;
+            //}
+            a:hover{
+                color:#3BBAB1;
+            }
+        }
+
+        .video-target-options-title {
+            //color: $grey-color;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-family: $font-bold-roboto;
+
+        }
+    }
+
+    .talent-charity {
+        font-weight: bold;
+    }
+
+    .talent-charity-image {
+        margin-top: 10px;
+
+        img {
+            max-width: 200px;
+            max-height:50px;
+        }
+    }
+    .form-control::-webkit-input-placeholder {
+        color: #8B8B8B;;
+        font-size:14px;
+        line-height: 18px;
+        font-family: $font-roboto;
+        opacity: 1;
+    }
+    .form-control::-moz-placeholder {
+        color: #8B8B8B;;
+        font-size:14px;
+        line-height: 18px;
+        font-family: $font-roboto;
+        opacity: 1;
+    }
+
+    .form-control:-ms-input-placeholder {
+        color: #8B8B8B;;
+        font-size:14px;
+        line-height: 18px;
+        font-family: $font-roboto;
+        opacity: 1;
+    }
+
+    .form-control::-ms-input-placeholder {
+        color:#8B8B8B;;
+        font-size:14px;
+        line-height: 18px;
+        font-family: $font-roboto;
+        opacity: 1;
+    }
+
+    .form-control::placeholder {
+        color: #8B8B8B;;
+        font-size:14px;
+        line-height: 18px;
+        font-family: $font-roboto;
+        opacity: 1;
+    }
+    .form-group .bootstrap-select {
+        margin-bottom: 0;
+    }
+    .bootstrap-select > .dropdown-toggle[title='Select an occasion']{
+        color:white;
+    }
+
+
+
+    .profile{
+        .profile-image{
+            img{
+                width:100%;
+                border-radius: 5px;
+            }
+        }
+        .profile-details{
+
+            text-align:$text-align;
+            .profile-name{
+
+                    font-family: $font-futura;
+                    font-weight:bold;
+                    font-size: 42px;
+                    line-height: 46px;
+                    color:$main-color;
+
+
+            }
+            .stars{
+                li{
+                    display:inline-block;
+
+                }
+            }
+
+            .profile-description {
+                font-family: $font-roboto;
+                font-weight:bold;
+                font-size: 16.41px;
+                line-height: 20px;
+                color:#9d9d9d;
+
+            }
+            .price{
+                border-radius: 50%;
+                width: 80px;
+                height:80px;
+                line-height: 80px;
+                background: #a7c5c7;
+                text-align: center;
+
+                span{
+                    font-family:$font-futura;
+                    font-size:23px;
+                    line-height: 27px;
+                    color:#145258;
+                    text-align:center;
+                }
+            }
+            .respond-time{
+                padding-top:20px;
+
+                p {
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: 200;
+                    font-family: $font-futura;
+
+                }
+
+            }
+            .review-section{
+                background-color: #dfe9ea;
+                padding-top: 25px;
+                padding-bottom:25px;
+                .review-nb{
+                    font-family: $font-futura;
+                    font-weight:bold;
+                    font-size: 18px;
+                    line-height: 22px;
+                    color:#145258;
+
+                }
+            }
+            a{
+                font-family: $font-futura;
+                font-size: 14.8px;
+                line-height: 18.8px;
+                color:#6c9498;
+                text-decoration:underline;
+            }
+
+
+
+
+
+        }
+    }
+
+
+}
+.time-respond{
+    margin-top:5px;
+    .btn-book-now-summery{
+        font-family: $font-futura;
+    }
+}
+.font-size-h4 {
+    font-size: 1.35rem !important;
+}
+.font-size-lg {
+    font-size: 1.08rem;
+}
+
+.label{
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    background-color: #EBEDF3;
+    color: #3F4254;
+    font-weight: 400;
+    &.label-inline {
+        width: auto;
+        padding: 0.15rem 0.75rem;
+        @include border-radius(.42rem);
+
+        // Sizing
+        &.label-md {
+            padding: 0.8rem 0.6rem;
+        }
+
+        &.label-lg {
+            padding: 0.9rem 0.75rem;
+        }
+
+        &.label-xl {
+            padding: 1rem 0.85rem;
+        }
+    }
+}
+.label.label-light-info {
+    color: #8950FC;
+    background-color: #EEE5FF;
+}
+.label.label-warning {
+    color: #ffffff;
+    background-color: #FFA800;
+}
+.label.label-outline-warning {
+    background-color: transparent;
+    color: #FFA800;
+    border: 1px solid #FFA800;
+}
+.label.label-outline-warning.label-outline-2x {
+    border: 2px solid #FFA800;
+}
+.label.label-light-warning {
+    color: #FFA800;
+    background-color: #FFF4DE;
+}
+.label.label-danger {
+    color: #ffffff;
+    background-color: #F64E60;
+}
+.label.label-outline-danger {
+    background-color: transparent;
+    color: #F64E60;
+    border: 1px solid #F64E60;
+}
+.label.label-outline-danger.label-outline-2x {
+    border: 2px solid #F64E60;
+}
+.label.label-light-danger {
+    color: #F64E60;
+    background-color: #FFE2E5;
+}
+.label.label-light-success {
+    color: #1BC5BD;
+    background-color: #C9F7F5;
+}
+.label.label-inline {
+    width: auto;
+    padding: 0.15rem 0.75rem;
+    border-radius: 0.42rem;
+}
+.label.label-inline.label-xl {
+    padding: 1rem 0.85rem;
+}
+.label.label-xl.label-inline {
+    width: auto;
+}
+//.label.label-xl {
+//    height: 28px;
+//    width: 28px;
+//    font-size: 1rem;
+//}
+//.label.label-xl.label-inline {
+//    width: auto;
+//}
+.border-block{
+    border: 1px solid #ffffff;
+    padding: 20px;
+    border-radius: 7px;
+}
+.social-name{
+    font-family: $font-bold-montserrat;
+}

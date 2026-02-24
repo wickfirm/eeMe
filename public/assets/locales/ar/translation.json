@@ -1,0 +1,245 @@
+{
+  "webName" : "eeMe",
+  "continue" :"استمر",
+  "emailAddress" :  "عنوان بريدك الإلكتروني",
+  "digitalHome" : "منزلك الرقمي",
+  "homeDescription" : "المنصة الإلكترونية التي ستتيح لكم أخيراً إدارة المحتوى الخاص بكم والتحكم به.",
+  "KeepMeUptoDate" : "ابقني على اطلاع بكل تحديثات eeMe",
+  "link"  : " من خلال مشاركة بريدك الإلكتروني، فإنك توافق على شروط الخدمة و سياسة الخصوصية  الخاصة بنا",
+
+  "searchPlaceHolder" : "ابحث عن شخص تحبه؟",
+
+  "qoute1" : "خلق مساحة للفنانين للتواصل مع الجمهور الخاص بهم",
+
+  "checkProfiles" : "تحقق من هذه الملفات",
+
+  "readyConnect": "جاهز للتواصل؟" ,
+  "talents" : "المواهب",
+
+  "submit" : "إرسال",
+  "seeMore" : "شاهد المزيد",
+  "browseProfiles": "تصفح الملفات ",
+
+  "newsletterSuccess"  : "تم تأكيد اشتراكك في قائمة eeMe البريدية. ",
+  "pageTitle" : "مساحة تواصل المواهب والعلامات التجارية والجمهور",
+  "acceptedPayments" : "طرق الدفع المتاحة",
+  "footerSign" : "اشتركوا ب eeMe ",
+  "privateCode" : "كود الدعوة الخاص",
+  "footerMailingList": "الاشتراك بقائمتنا البريدية",
+  "about" : "حول \"eeMe\"",
+  "contact" : "للإتصال",
+  "terms" : "الأحكام والشروط",
+  "privacy" : "سياسة الخصوصية",
+  "help"   : "للمساعدة" ,
+  "copyRight" : "© حقوق الطبع والنشر 2023 eeMe",
+  "reserved" : "جميع الحقوق محفوظة",
+  "subscribeActivities" : "اشتركوا معنا لتبقوا على اطلاع على آخر أخبار مواهبنا والأنشطة",
+
+
+  "talentIndexMainTitle": "في الأخبار",
+  "pageTalentIndexTitle" : "المواهب تجتمع في منصة eeMe",
+  "featured" : "متميزون",
+  "newOnEeme": "الآن على eeMe",
+  "businessShoutout" :"بحاجة الى إعلان تجاري؟",
+
+  "categoryWelcomeStatement" : "مرحبا بك في عالم ",
+
+  "signUpFree" : "سجلوا مجاناً",
+
+  "articleShare" : "شارك المقال:",
+  "requestVideo" : "احجز طلبك من ",
+  "now" : "الآن",
+  "book" : "احجز الآن",
+  "moreOn" : "المزيد عن",
+
+  "onBoardingTitle" : "فلننشئ باقة وسائط الفنان/ الملف الشخصي الأونلاين مجاناً",
+  "onBoardingDescription" : "إذا كنتم من فئة الممثلين أو المغنيين أو صنّاع محتوى أو من مؤلفي الأغاني أو صنّاع أفلام أو من الشخصيات الإعلامية أو الرياضية أو من الخبراء في مجالكم، فيمكننا مساعدتكم في إنشاء باقة الوسائط والملف الشخصي الخاص بكم أونلاين على منصة eeMe بدون أي تكلفة إضافية. وفروا الوقت والمال.",
+  "onBoardingTitle2" : "اعرضوا الملف الشخصي المتكامل الخاص بكم أمام جمهوركم",
+  "onBoardingNote" : " بمجرد التسجيل وإدخال المعلومات في الحقول المطلوبة، سيقوم فريق eeMe بمراجعة طلبك. عادةً ما نراجع الملفات الشخصية خلال 24 ساعة. لكن في بعض الحالات، قد يستغرق الأمر وقتاً أطول. سوف تتلقى تحديثات طلبك عبر البريد الإلكتروني.",
+  "onBoardingFormTitle" : " إنّه مجاني - إلى الأبد!",
+  "onBoardingStep1" : "احصلوا على الملف الشخصي الإلكتروني الذي يعرض المحتوى الخاص بكم من جميع الأنظمة الأساسية على الإنترنت",
+  "onBoardingStep2" : "كن جزءاً من عائلة eeMe",
+  "onBoardingStep3" : "ستقومون بلفت أنظار العلامات التجارية التي تبحث عن صنّاع محتوى مبدعين أمثالكم",
+  "onBoardingStep4" : "خطوة سهلة. نحن نساعدكم على بدء البث المباشر في أقل من 10 دقائق" ,
+  "onBoardingStep5" : "بدون أي تكاليف إضافية، وبدون عمولات. لديكم سيطرة كاملة على الملف الشخصي الخاص بكم - إنّه مجاني إلى الأبد!",
+  "onBoardingFormName": "اسمك أو الاسم الفني",
+  "onBoardingFormIgUserName" : "اسم المستخدم على تطبيق إنستغرام أو عنوان الرابط",
+  "onBoardingFormPhoneNumber" : "رقم هاتفك",
+  "onBoardingFormYoutubeUsername" : "رابط اليوتيوب " ,
+  "onBoardingFormOtherSocial" :"أي رابط آخر لحساب وسائل التواصل الاجتماعي" ,
+  "onBoardingFormProfileLink"  :"رابط اسم المستخدم / الملف الشخصي" ,
+  "onBoardingFormFollowers" :"كم عدد المتابعين / المشتركين لديكم؟",
+  "onBoardingFormPrivateCode" : "كود الدعوة الخاص",
+  "onBoardingFormPackage" : "أي باقة تفضلون؟",
+
+  "onBoardingTechnologies" : "تساعدكم تقنيات eeMe على التحكم بحياتكم المهنية",
+  "onBoardingTalentMediaKit" : "مجموعة وسائط المواهب",
+  "onBoardingPMedia_1" : "مجموعة الوسائط / الموقع الإلكتروني الخاص بكم على الإنترنت",
+  "onBoardingPMedia_2" : "معلومات عنكم",
+  "onBoardingPMedia_3" : "باقة الوسائط الأونلاين الخاصة بكم/ الموقع الإلكتروني الخاص بكم" ,
+  "onBoardingPMedia_4" : "الموسيقى / قوائم التشغيل",
+  "onBoardingPMedia_5" : "المشاريع السابقة والمستقبلية" ,
+  "onBoardingPMedia_6" : "الأعمال الخيرية",
+  "onBoardingTalentBooking" : "محرك الحجز للفنانين",
+  "onBoardingPBooking_1" : "كل ما هو متعلق بباقة الوسائط، بالإضافة إلى:",
+  "onBoardingPBooking_2" : "الحجز أو التجارة الإلكترونية، وبيع كل ما ترغبون به على الموقع الإلكتروني الخاص بكم" ,
+  "onBoardingPBooking_3" : "تحليلات الوسائط الاجتماعية الأساسية",
+  "onBoardingPrice" : "3.97 دولار/ شهر",
+  "onBoardingInsights" : "رؤى المواهب" ,
+  "onBoardingPInsight_1" : "كل الأمور المذكورة في محرك حجز المواهب، بالإضافة إلى:",
+  "onBoardingPInsight_2" : "تحليلات متقدمة لوسائل التواصل الاجتماعي" ,
+  "onBoardingPInsight_3" : "إعلان للعلامات التجارية من أجل التعاون",
+  "onBoardingInsightPrice" : "5.97 دولار/ شهر",
+  "onBoardingTalent" : "مواهب عظماء يستخدمون منصة eeMe",
+  "onBoardingTalentQuote" : "\"لقد أنشأنا هذه التقنية بهدف تمكين أصحاب المواهب، من خلال منحهم نظاماً أساسياً متعدد الإمكانات لعرض ملفاتهم. نحن نسعى لمساعدتهم على فتح الأبواب أمام فرص أكبر للتعاون مع العلامات التجارية وتحقيق فرص أكبر في النمو الوظيفي. \"ركزوا  على تنمية على موهبتكم، واتركوا لنا مهمة التركيز عل مساحتكم الرقمية\"",
+  "onBoardingCeoName" : "محمد بيطار، المؤسس / الرئيس التنفيذي",
+  "onBoardingeeMe" : "eeMe",
+
+  "talentVerify" : "تأكيد / تعريف",
+  "notifyAlertMessage" : "Thank you. You'll be notified as soon as talent is available",
+  "talentNotifyButton" : "Notify me when available",
+  "talentNotAvailable" : "غير متوفر حاليا",
+
+  "instagram" : "الانستغرام",
+  "engagementRate" : "معدل المشاركات ",
+  "mediaCount" : "عدد الوسائط",
+  "avgViews" : " متوسط المشاهدات",
+  "followers" : "المتابَعين",
+  "tikTok" : "تيك توك ",
+  "following" : "المتابِعين",
+  "likes" : "الإعجابات",
+  "videoCount" : "عدد الفيديوهات",
+  "youTube" : "يوتيوب",
+  "avgComments" : "متوسط التعليقات",
+  "avgLikes" : "متوسط الإعجابات",
+  "lookalikesSimilarTopics" : "Lookalikes (مواضيع مماثلة)",
+  "popular" : "الشائع",
+  "audienceDataFollower" : " بيانات الجمهور - المتابعون",
+  "brandAffinity" : "صلة الجمهور بالعلامة التجارية",
+  "interestAffinity" : "صلة إهتمام الجمهور",
+  "audienceLookalikes" : "مواضيع تهم الجمهور",
+  "notableFollowers": "متابعون بارزون",
+  "audienceDataLikes" : " بيانات الجمهور - إعجابات",
+  "audienceDataComments" : "بيانات الجمهور - التعليقات",
+
+  "inTheSpotLight" : "في دائرة الضوء",
+  "findMeOn" : "تجدوني على",
+
+  "media" : "في وسائل الإعلام",
+  "socialFeed" : "منشورات السوشل ميديا" ,
+  "insights" : "الرؤية الخاصة" ,
+  "collabs" : "تعاوناتي",
+  "personalizedVideos" : "مقاطع فيديو مخصصة",
+
+
+  "bookTitle"                    : "احصل على  فيديو من {{talent}}",
+  "bookPersonalizedVideoTitle"   : "لدى {{talent}}  {{responseTime}} ايام للنظر في طلبك. سيتم إرسال التحديثات إلى بريدك الإلكتروني الذي أضفته ضمن \"معلومات التسليم\". عند اكتمال طلبك، سنرسل إليك عبر البريد الإلكتروني رابطاً لعرض الفيديو أو مشاركتها أو تحميلها. إذا لم يتم إكمال الفيديو الخاص بك لأي سبب، سنعيد مبلغ {{price}} $ إليك.",
+  "requestCampaignTitle"         : "ملخص تسويق الفنان وصانع المحتوى" ,
+  "requestCampaignDescription"   : "يجب أن يذكر الملخص بشكل واضح أهداف الحملة والتوقعات والمبادئ التوجيهية والمخرجات بحيث يكون لدى الفنان المحتمل أو صانع المحتوى جميع التفاصيل الضرورية قبل التعاون. سيضمن ذلك توافق الفنان / صانع المحتوى وأهداف علامتكم التجارية. سيعزز أيضاً فرصكم في الحصول على حملة تسويقية ناجحة.\n\nلضمان عملية سلسة ، إليكم لمحة عما يجب أن يتضمنه ملخص التسويق الاستثنائي:",
+
+  "form" : {
+    "personalizedShoutout"   : "Personalized",
+    "requestBrief"           : "Brief",
+    "thisVideoIs"            : "هذا الفيديو مخصص لـ:",
+    "videoTargetSelf"        : "متعلق بي\n",
+    "videoTargetOther"       : "شخص آخر",
+    "name"                   : "الاسم",
+    "fromPlaceholder"        : "يوسف",
+    "to"                     : "من" ,
+    "toPlaceholder"          : "دانا",
+    "from"                   : "إلى",
+    "occasionPlaceHolder"    : "اختر مناسبة",
+    "additionalRequest"      : "اجعل فيديوهاتك أكثر تميزا (اختياري)",
+    "instructions"           : "ماذا أطلب من {{talent}}:",
+    "instructionPlaceholder" : "عيد ميلاد شقيقتي الأسبوع المقبل وهي تحبك كثيراً. أنا أسميها (سوسو) وأتمنى أن ترسل لها معايدة في هذه المناسبة.",
+    "phoneNumberPlaceholder" : "(0XXX) YYYY YYYY",
+    "phoneNumber"            : "رقم الهاتف",
+    "email"                  : "بريد الإلكتروني",
+    "promoCode"              : "رمز الترويجي (اختياري)",
+    "makePublic"             : "يمكن للجميع على \"eeMe\" رؤية هذا الفيديو",
+    "bookPersonalizedVideo"  : "احجز الآن مقابل",
+    "bookNowFor"             : "احجز الآن مقابل",
+    "pleaseSelect"           : "اختر من فضلك:",
+    "message"                : "رسالة خاصة",
+    "messagePlaceholder"     : "اكتب كل التفاصيل التي ستساعدنا على معرفة ما تبحث عنه بشكل أفضل",
+    "occasionTitle"          :"المناسبة" ,
+
+    "brief" : {
+      "name"            : "الإسم",
+      "campaignName"    : "إسم الحملة: (أو عنوان الحملة)",
+      "brandName"       : "إسم شركتكم أو علامتكم التجارية",
+      "brief"           : "نبذة عامة",
+      "message"         : "اكتب كل التفاصيل التي ستساعدنا على معرفة ما تبحث عنه بشكل أفضل",
+      "deliveryDate"    : "موعد التسليم",
+      "customFee"       : "رسوم الجمارك",
+      "extraSettings"   : "إعدادات إضافية",
+      "usageRights"     : "حقوق إستخدام المحتوى",
+      "fullRights"      : "حقوق الاستخدام الكاملة",
+      "twoRights"       : "حقوق الاستخدام لمدة عامين",
+      "noRights"        : "حقوق الاستخدام غير متوفرة",
+      "customRights"    : "حقوق الاستخدام المخصصة"
+    },
+
+    "bookCondition"     : " الحجز توافقون على\n <a target=\"_blank\" class='link-primary-muted' data-toggle=\"modal\" data-target=\"#terms-modal\" data-dismiss=\"modal\" href=\"/terms\">شروط الخدمة</a>\n و\n  <a target=\"_blank\" class='link-primary-muted'  data-target=\"#privacy-policy-modal\" data-dismiss=\"modal\" href=\"/privacy-policy\">سياسة الخصوصية</a>\n  التابعة للموقع \"eeMe\"."
+
+  },
+  "payment" : {
+    "paymentCancelled"                 : "تم الغاء الطلب." ,
+    "paymentCancelledDescription"      : "هناك خطأ في الحوالة. جرب مرة أخرى أو اتصل ب hello@omneeyat.com . " ,
+    "paymentDeclined"                  : "تم إلغاء الطلب." ,
+    "paymentDeclinedDescription"       : "لقد تم إلغاء طلبك." ,
+    "paymentApproved"                  : "شكراً على طلبك." ,
+    "paymentApprovedDescription"       : "لقد تسلمنا الطلب ونعمل على مراجعته." ,
+    "orderDetails"                     : "تفاصيل الطلب" ,
+    "yourOrderDetails"                 : "تفاصيل الطلب" ,
+    "paymentThanksStatement"           : "شكراً لك لإعطائنا الفرصة لنصلك بموهبتك المفضلة." ,
+    "orderReceivedStatement"           : "تم استلام طلبك وهو قيد المعالجة الآن." ,
+    "donationStatement"                : "شكراً لك، سيتم التبرع بدولار واحد لشخص محتاج." ,
+    "paymentSuccessContactStatement"   : "إذا كان لديك أية أسئلة، تواصل معنا عن طريق الرد على رسالة التأكيد عبر البريد الإلكتروني (تحقق من مجلد الرسائل غير المرغوب بها)  ." ,
+    "paymentWuStatement"               : "للخطوة الأخيرة، يرجى الاتصال بنا عن طريق الرد على رسالة التأكيد عبر البريد الإلكتروني (تحقق من مجلد الرسائل غير المرغوب بها) ." ,
+    "orderNumber"                      : "رقم الطلب" ,
+    "successDonation"                  : "تم إرسال تبرعك." ,
+    "cancelDonation"                   : "هناك خطأ في المعاملة. حاول مرة أخرى أو ابعث رسالة على hello@omneeyat.com ." ,
+    "wuDonation"                       : "للخطوة الأخيرة، ابعث رسالة على hello@omneeyat.com ",
+    "paymentMethod"                    : "طريقة الدفع",
+    "successBsnOrder"                  : "شكراً لتواصلك مع موهبتك المفضلة عبر موقعنا. لقد تم استلام طلبك وهو الآن في مرحلة المعالجة. بفضلك، سيتم التبرع بقيمة ١$ لشخص محتاج.\nفي حال كانت لديك أية اسئلة، الرجاء التواصل معنا عبر الرد على رسالة التأكيد الإلكترونية (تحققوا من البريد غير المرغوب) " ,
+    "cancelledBsnOrder"                : "لقد تم إلغاء طلبك. هناك خلل في العملية. حاول مجددا او تواصل معنا عبر البريد الإلكتروني ",
+    "pendingBsnOrder"                  :"<h2>شكراً لإعطائنا الفرصة لنوصلك بمموهبتك المفضلة <span>&#10084;&#65039;</span></h2> لقد تم استلام طلبك وهو الآن قيد المعالجة.<br> لإتمام العملية، الرجاء التواصل معنا عبر الرد على رسالة التأكيد (تحقق من البريد غير المرغوب) ",
+    "request_brief_success"            : "لقد تم تقديم طلبكم بنجاح"
+  },
+  "button" : {
+    "submit" : "تقديم"
+  },
+
+  "filmography" : {
+    "filmography" : "فيلموغرافيا",
+    "cast" : "الممثلين"
+  },
+  "talent" : {
+    "verifyIdentityTitle" : "هذا أنت {{talent}}؟ من فضلك املأ النموذج التالي:"
+  },
+
+  "video" : {
+    "title" : "لدينا شيء مميز من أجلك!",
+    "hello": "مرحباً {{name}}!",
+    "readyVideo" : "الفيديو المخصص من {{talent}}  أصبح جاهزاً!"
+  },
+
+
+  "socialMeta": {
+    "home" : {
+      "title" : "مساحة تواصل المواهب والعلامات التجارية والجمهور"
+    },
+    "talent" : {
+      "titleIndex" : "المواهب تجتمع في منصة eeMe" ,
+      "title" : "  eeMe ل {{talent}} ",
+      "description" : "احجز فيديو مخصص لك وتواصل مع مواهب مثل {{talent}} عبر موقع eeMe",
+      "mainDescription" : "المنصة eeMe الإلكترونية ستتيح لكم أخيراً إدارة المحتوى الخاص بكم والتحكم به"
+    },
+
+    "video" : {
+      "description" : "Something special from {{talent}}"
+    }
+  }
+
+}

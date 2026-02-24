@@ -1,0 +1,143 @@
+section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  @media (max-width: $breakpoint-991) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  @media (max-width: $breakpoint-767) {
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+
+  @media (max-width: $breakpoint-575) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .entry-header {
+    text-align: left;
+    margin-bottom: 25px;
+
+    .entry-title {
+      @include fontSize(26);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-weight: 500;
+      color: #003667;
+
+      &.left {
+        text-align: left;
+      }
+
+      @media (max-width: $breakpoint-767) {
+        @include fontSize(20);
+        letter-spacing: 3px;
+      }
+
+      @media (max-width: $breakpoint-575) {
+        @include fontSize(18);
+      }
+    }
+
+    .section-subtitle {
+      @include fontSize(22);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+
+      @media (max-width: $breakpoint-767) {
+        @include fontSize(20);
+        letter-spacing: 3px;
+      }
+
+      @media (max-width: $breakpoint-575) {
+        @include fontSize(18);
+      }
+    }
+
+    .section-title-small {
+      @include fontSize(24);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-weight: 600;
+      color: #000000;
+    }
+
+    .section-title-big {
+      @include fontSize(32);
+      font-weight: bold;
+      color: #000000;
+
+      @media (max-width: $breakpoint-991) {
+        @include fontSize(30);
+      }
+      @media (max-width: $breakpoint-767) {
+        @include fontSize(24);
+      }
+      @media (max-width: $breakpoint-575) {
+        @include fontSize(18);
+      }
+    }
+
+    h5 {
+      @include fontSize(17);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      color: #000000;
+    }
+
+    p {
+      text-align: justify;
+      @include fontSize(17);
+      line-height: 24px;
+      color: #000000;
+      font-weight: 300;
+
+      @media (max-width: $breakpoint-767) {
+        @include fontSize(14);
+      }
+    }
+  }
+
+  .section-content {
+    text-align: justify;
+    @include fontSize(16);
+    //color: $color-grey;
+    margin-bottom: 30px;
+
+    @media (max-width: $breakpoint-767) { 
+      @include fontSize(14);
+      margin-bottom: 30px;
+    }
+
+    &.light {
+      font-weight: 300;
+    }
+
+    &.black {
+      color: #000000;
+    }
+  }
+
+  .section-footer {
+    text-align: center;
+  }
+}
+
+section.intro{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  header {
+    h2{
+      @include fontSize(26);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+      color: #003768;
+      margin-bottom: 0;
+    }
+  }
+}

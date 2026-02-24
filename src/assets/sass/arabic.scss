@@ -1,0 +1,95 @@
+.english{
+  display:none!important
+}
+@font-face{
+  font-family:'Droid Arabic Kufi';
+  font-style:normal;
+  font-weight:400;
+  src:url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Regular.eot);
+  src:url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Regular.eot?#iefix) format('embedded-opentype'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Regular.woff2) format('woff2'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Regular.woff) format('woff'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Regular.ttf) format('truetype')
+}
+@font-face{
+  font-family:'Droid Arabic Kufi';
+  font-style:normal;
+  font-weight:700;
+  src:url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Bold.eot);
+  src:url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Bold.eot?#iefix) format('embedded-opentype'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Bold.woff2) format('woff2'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Bold.woff) format('woff'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v3/DroidKufi-Bold.ttf) format('truetype')
+}
+@font-face{
+  font-family:'Droid Arabic Naskh';
+  font-style:normal;
+  font-weight:400;
+  src:url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v4/DroidNaskh-Regular.eot);
+  src:url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v4/DroidNaskh-Regular.eot?#iefix) format('embedded-opentype'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v4/DroidNaskh-Regular.woff2) format('woff2'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v4/DroidNaskh-Regular.woff) format('woff'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v4/DroidNaskh-Regular.ttf) format('truetype')
+}
+@font-face{
+  font-family:'Droid Arabic Naskh';
+  font-style:normal;
+  font-weight:700;
+  src:url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v4/DroidNaskh-Bold.eot);
+  src:url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v4/DroidNaskh-Bold.eot?#iefix) format('embedded-opentype'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v4/DroidNaskh-Bold.woff2) format('woff2'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v4/DroidNaskh-Bold.woff) format('woff'),url(https://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v4/DroidNaskh-Bold.ttf) format('truetype')
+}
+body{
+  font-family:"Droid Arabic Kufi",serif!important;
+   text-align: right;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family:"Droid Arabic Kufi",serif!important;
+}
+
+.footer ul.quicklinks {
+  padding-right: 0;
+  .list-inline-item:not(:last-child) {
+    margin-right: auto;
+    margin-left: .5rem;
+  }
+}
+
+.footer ul.quicklinks li a span {
+  margin-left: auto;
+  margin-right: 7px;
+}
+
+.accepted-payments img{
+  margin-right: auto !important;
+  margin-left: 12px;
+}
+
+.footer ul.social-buttons {
+  padding-right: 0;
+}
+
+.list-inline-item:not(:last-child) {
+  margin-right: auto;
+  margin-left: .5rem;
+}
+
+.single-talent .talent-category a {
+  margin-right: auto;
+  margin-left: 10px;
+ }
+
+body.talent input[type=radio] + label:before, body.talent input[type=checkbox] + label:before {
+  margin-right: auto;
+  margin-left: 4px;
+}
+
+body.talent .section-heading {
+  font-family: "Droid Arabic Kufi";
+}
+
+body.talent .form-group label {
+  font-family: 'Droid Arabic Kufi';
+}
+
+.talent-weeks .box-talent .price {
+ margin-right: 84%;
+}
+
+@media (min-width: 576px) {
+  .single-talent .charity-space .padding0 {
+    padding-left: 15px;
+    padding-right: 0;
+  }
+}

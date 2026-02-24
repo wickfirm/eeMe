@@ -1,0 +1,385 @@
+//section.onboarding {
+//    background-color: $background-color;
+//    padding-top: 85px;
+//
+//    .title {
+//        color: $main-color;
+//        font-size: 44px;
+//        font-family: $font-bold-montserrat;
+//    }
+//
+//    .description {
+//        font-family: $font-roboto;
+//        font-size: 16px;
+//        line-height: 20px;
+//
+//        li {
+//            padding-top: 20px;
+//        }
+//    }
+//
+//    .form-title {
+//        color: $main-color;
+//        font-size: 30px;
+//        font-family: $font-bold-montserrat;
+//    }
+//
+//    .form-subtitle {
+//        font-family: $font-montserrat;
+//        font-size: 19px;
+//        color: $placeholder-lighter-color;
+//    }
+//
+//    .contact-form {
+//        background-color: $placeholder-lighter-color;
+//
+//        &::placeholder {
+//            color: #3f3e3c;
+//        }
+//    }
+//
+//    .select-omneeyat {
+//        &.platform {
+//            background-color: #d9d9d9;
+//            font-family: $font-roboto;
+//
+//            &::placeholder {
+//                color: #3f3e3c;
+//                font-family: $font-roboto;
+//            }
+//        }
+//    }
+//
+//    .addon-offer {
+//        color: $main-color;
+//        padding-left: 10px;
+//        font-family: $font-roboto;
+//    }
+//
+//    .label-contact {
+//        color: $main-color;
+//        font-family: $font-bold-montserrat;
+//    }
+//
+//    .price_input {
+//        display: none;
+//    }
+//
+//    .question {
+//        display: none;
+//    }
+//
+//    .freq-questions::before {
+//        content: '+';
+//        font-size: 18px;
+//        left: 0;
+//        @if $text-align == 'right' {
+//            padding-left: 25px;
+//        } @else {
+//            padding-right: 25px;
+//        }
+//
+//    }
+//
+//    .question:checked + .freq-questions::before {
+//        content: '-';
+//        font-size: 18px;
+//        left: 0;
+//        @if $text-align == 'right' {
+//            padding-left: 25px;
+//        } @else {
+//            padding-right: 25px;
+//        }
+//
+//    }
+//
+//    .answer {
+//        background-color: #e8e8e8;
+//        padding: 10px 25px;
+//        color: #3f3e3c;
+//        font-family: $font-montserrat;
+//    }
+//
+//    .question + .freq-questions + .answer {
+//        display: none;
+//    }
+//
+//    .question:checked + .freq-questions + .answer {
+//        display: block;
+//    }
+//
+//    .freq-questions {
+//        font-family: $font-montserrat;
+//        font-size: 18px;
+//        position: relative;
+//        padding-right: 30px;
+//    }
+//
+//    .freq-questions button {
+//        background-color: $background-color;
+//        border: unset;
+//        color: white;
+//        text-align: $text-align;
+//    }
+//
+//    .freq-questions:hover {
+//        color: $main-color;
+//        cursor: pointer;
+//    }
+//
+//    .question-block:hover {
+//        cursor: pointer;
+//        color: $main-color;
+//    }
+//
+//    .contact-us {
+//        font-family: $font-roboto;;
+//        font-size: 15px;
+//
+//        a {
+//            color: $main-color;
+//        }
+//    }
+//}
+section.onboarding {
+    padding-top: 60px;
+    background-color: #ffffff;
+    .h-600{
+       height:600px;
+    }
+    .note-form{
+        font-family:$font-montserrat;
+    }
+
+    .onboarding-head {
+        background-color: #ffffff;
+        padding-top: 5%;
+        padding-bottom: 85px;
+
+        .main-title {
+            color: $main-color;
+            font-size: 35px;
+            font-family: $font-bold-montserrat;
+        }
+
+        .main_description {
+            color: #000000;
+            font-family: $font-bold-roboto;
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+    }
+
+    .title {
+        color: #ffffff;
+        font-size: 30px;
+        line-height: 34px;
+        font-family: $font-bold-montserrat;
+    }
+
+    .list-details {
+        font-family: $font-roboto;
+
+        @if $text-align == 'left' {
+            font-size: 16px;
+            line-height: 20px;
+        } @else {
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        li {
+            padding-top: 20px;
+        }
+        &.features{
+            font-size: 18px !important;
+            line-height: 22px !important;
+            font-family: $font-bold-montserrat !important;
+        }
+    }
+
+    .form-title {
+        color: $main-color;
+        font-size: 30px;
+        line-height: 34px;
+        font-family: $font-bold-montserrat;
+        text-align: center;
+    }
+
+    .technology-title {
+        font-family: $font-bold-montserrat;
+        color: $main-color;
+    }
+
+    .bg-white {
+        background-color: #ffffff;
+    }
+
+    .bg-dark {
+        background-color: #211f20;
+    }
+
+    .b-title {
+        text-align: center;
+        color: $main-color;
+        font-family: $font-bold-montserrat;
+        font-size:22px;
+    }
+
+    .bg-onboarding-white {
+        background-color: #ffffff;
+        height: 200px;
+    }
+
+    .pos-abs {
+        position: absolute;
+        top: 30px;
+        right: -15%
+    }
+
+    .bg-dark-grey {
+        background-color: #B2B2B2;
+        height: 200px;
+    }
+    .price-package{
+        color: #3bbab1;
+        font-family: $font-semi-bold-montserrat;
+        font-size: 20px;
+        background-color: white;
+        padding: 15px;
+        text-align: center;
+
+    }
+    .price-package:hover{
+        color: #ffffff;
+        background-color: #3bbab1;
+        a:hover{
+            text-decoration: none;
+        }
+    }
+    .talent{
+        background-color: $main-color;
+    }
+    .w-title{
+        text-align: center;
+        color: #ffffff;
+        font-family: $font-bold-montserrat;
+    }
+    .form-block{
+        background-color: $background-color;
+    }
+
+    .contact-form{
+        background-color: $placeholder-lighter-color;
+        position: relative;
+        &::placeholder{
+            color: #3f3e3c;
+        }
+        &::placeholder:after {
+            position:absolute;
+            top:0;
+            left:50%;
+            content: "*";
+            color: red;
+        }
+    }
+    .error{
+        color: $error-text-color;
+    }
+    .h-350{
+        height: 350px;
+    }
+
+}
+.quote-block{
+    font-size: 15px;
+    font-family: $font-bold-montserrat;
+    line-height: 24px;
+}
+@media (max-width: 576px) {
+    section.onboarding .form-title {
+        color: $main-color;
+        font-size: 22px;
+        line-height: 34px;
+        text-align: center;
+    }
+    section.onboarding .technology-title {
+        color: $main-color;
+        font-size: 20px;
+    }
+    section.onboarding .bg-dark {
+        padding: 5px;
+    }
+    section.onboarding .title {
+        color: $text-main-color;
+        font-size: 22px;
+        line-height: 34px;
+        font-family: $font-bold-montserrat;
+    }
+    section.onboarding .contact-form {
+        background-color: $placeholder-lighter-color;
+        position: relative;
+        font-size: 15px;
+    }
+    section.onboarding .b-title {
+        text-align: center;
+        color: $main-color;
+        font-family: $font-bold-montserrat;
+        font-size: 22px;
+    }
+    section.onboarding .list-details li {
+        padding-top: 10px;
+        font-size: 17px;
+    }
+    section.onboarding .w-title {
+        text-align: center;
+        color: $text-main-color;
+        font-family: $font-bold-montserrat;
+        font-size: 22px;
+    }
+    .quote-block {
+        font-size: 15px;
+        font-family: $font-bold-montserrat;
+        line-height: 24px;
+    }
+    section.onboarding .onboarding-head .main_description {
+        font-size: 18px;
+    }
+    section.onboarding .onboarding-head .main-title {
+        font-size: 22px;
+    }
+    .desktop-menu {
+        display: none;
+    }
+    section.onboarding .onboarding-head {
+        @if $text-align == 'left'{
+            padding-bottom: 0;
+        }
+    }
+    section.onboarding {
+        padding-top: 100px;
+    }
+    .thanks-statement{
+        font-size: 18px;
+        font-weight:bold;
+        text-align: $text-align;
+        &.final{
+            line-height: 28px;
+            font-weight: normal;
+        }
+    }
+    section.talent {
+        .section-heading {
+            font-size: 25px !important;
+        }
+    }
+
+}
+@media (max-width: 965px){
+.h-350 {
+    height: auto !important;
+}
+
+}
+

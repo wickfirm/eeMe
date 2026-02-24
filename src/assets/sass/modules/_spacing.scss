@@ -1,0 +1,75 @@
+.mb-30-991 {
+  @media (max-width: $breakpoint-991) {
+    margin-bottom: 30px;
+  }
+}
+
+.mb-30-767 {
+  @media (max-width: $breakpoint-767) {
+    margin-bottom: 30px;
+  }
+}
+
+@mixin spacing($amount, $position) {
+  $amount: $amount * 5;
+
+  @if ($position == 'top'){
+    .mt-#{$amount} {
+      margin-top: $amount + px;
+    }
+    .pt-#{$amount} {
+      padding-top: $amount + px;
+    }
+  }
+  @else if ($position == 'bottom'){
+    .mb-#{$amount} {
+      margin-bottom: $amount + px;
+    }
+    .pb-#{$amount} {
+      padding-bottom: $amount + px;
+    }
+  }
+  @else if ($position == 'left'){
+    .ml-#{$amount} {
+      margin-left: $amount + px;
+    }
+    .pl-#{$amount} {
+      padding-left: $amount + px;
+    }
+  }
+  @else if ($position == 'right'){
+    .mr-#{$amount} {
+      margin-right: $amount + px;
+    }
+    .pr-#{$amount} {
+      padding-right: $amount + px;
+    }
+  } @else if ($position == 'vertical'){
+    .my-#{$amount} {
+      margin-top: $amount + px;
+      margin-bottom: $amount + px;
+    }
+    .py-#{$amount} {
+      padding-top: $amount + px;
+      padding-bottom: $amount + px;
+    }
+  } @else if ($position == 'horizontal'){
+    .mx-#{$amount} {
+      margin-left: $amount + px;
+      margin-right: $amount + px;
+    }
+    .px-#{$amount} {
+      padding-left: $amount + px;
+      padding-right: $amount + px;
+    }
+  }
+}
+
+@for $i from 0 through 20 {
+  @include spacing($i, 'bottom');
+  @include spacing($i, 'top');
+  @include spacing($i, 'right');
+  @include spacing($i, 'left');
+  @include spacing($i, 'vertical');
+  @include spacing($i, 'horizontal');
+}

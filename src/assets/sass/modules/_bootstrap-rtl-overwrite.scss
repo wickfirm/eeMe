@@ -1,0 +1,16 @@
+//[dir=rtl] .input-group>.input-group-append>.btn {
+//    border-radius: 0;
+//}
+
+//[dir=rtl] .form-check-input {
+//    margin-right: 0;
+//}
+.form-check-input{
+    //transform: scale(1.5);
+    position: absolute;
+    //margin-top: 0;
+    margin-left: -1.25rem;
+}
+.rtl .form-check-input, [dir=rtl] .form-check-input {
+    margin-right: -0.25rem !important;
+}

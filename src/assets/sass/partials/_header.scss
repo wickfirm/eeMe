@@ -1,0 +1,54 @@
+header.masthead {
+    text-align: center;
+    color: #fff;
+    background-image: url(https://omneeyat.com/uploads/banners/banner.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover
+}
+
+header.masthead .intro-text {
+    padding-top: 150px;
+    padding-bottom: 100px;
+
+    .intro-lead-in {
+        font-size: 22px;
+        line-height: 22px;
+        margin-bottom: 25px;
+        margin-top: 32px;
+
+    }
+}
+
+header.masthead .intro-text .btn-banner {
+    background: transparent;
+    border-color: #fff;
+    border-radius: 0;
+    padding: 14px 42px;
+    color: #fff;
+
+    &:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        outline: none;
+        background: transparent;
+        border: 1px solid #fff;
+    }
+}
+
+@media (min-width: 768px) {
+    header.masthead .intro-text {
+        padding-top: 174px;
+        padding-bottom: 174px;
+
+        .intro-lead-in {
+            font-size: 22px;
+            line-height: 22px;
+            margin-bottom: 25px;
+            margin-top: 32px;
+
+        }
+
+    }
+}

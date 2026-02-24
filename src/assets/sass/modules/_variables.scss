@@ -1,0 +1,88 @@
+$breakpoint-1199: 1199px;
+$breakpoint-991: 991px;
+$breakpoint-767: 767px;
+$breakpoint-575: 575px;
+
+
+$base-fontsize: 16;
+$light-orange-color: #ffc396;
+
+
+$error-text-color: #dc3545;
+
+$primary: #3ab1bb;
+$nav-bg:  #211f20;
+$purple-color: #8461a6;
+$black: #000000;
+$lighter-color: lighten($primary, 15%);
+//@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+.light {
+    background: var(--main-bg);
+
+    --main-bg: #ffffff;
+    --secondary-bg: linear-gradient(-75deg,#edc1fc,#ebf7f9,#d3fcf4,#edc1fc);
+    --text-color: #343a40;
+    --title-color: #3ab1bb;
+    --radius: 0;
+    --border-focus: #bbbbbb;
+    --subtle: #979797;
+    --muted: #343a40;
+    --text: #0c0c0c;
+    --border-color: #edc1fc;
+    --data-bg: linear-gradient(#edc1fc,#ebf7f9,#d3fcf4);
+     --dark: #343a40;;
+    --primary-hover:#343a40;
+    --article-color: #000000;
+    color: var(--muted);
+
+}
+
+.dark {
+    background: var(--main-bg);
+
+    --main-bg: #211f20;
+    --secondary-bg: #211f20;
+    --text-color: #9d9d9d;
+    --title-color: #ffffff;
+    --radius: 0;
+    --border-focus: #bbbbbb;
+    --subtle: #979797;
+    --muted: #9d9d9d;
+    --text: #f5f5f5;
+    --border-color: #464646;
+    --data-bg: #000000;
+    --primary-hover: #3ab1bb;
+    --dark: #ffffff;
+    --article-color: #b2b1b1;
+    color: var(--muted);
+
+
+}
+
+
+.ar{
+    direction: rtl;
+    text-align: right;
+    --text-align: right;
+    --font-title: 'Noto Sans', sans-serif;
+    --font-bold : 'Noto Sans Bold' , serif;
+    --font-text: 'Noto Sans', sans-serif;
+    .lang-mode-pl{
+            padding-right: 22px;
+    }
+}
+
+
+.en{
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200&family=Roboto:wght@400;700&display=swap');
+    direction: ltr;
+    text-align: left;
+    --text-align: left;
+    --font-title: 'Montserrat',serif;
+    --font-bold : 'Montserrat Bold' , serif;
+    --font-text: 'Roboto',serif;
+    .lang-mode-pl {
+        padding-left: 22px;
+    }
+}
+

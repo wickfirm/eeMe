@@ -1,0 +1,201 @@
+.navigation {
+    color: #ffffff;
+    font-family: $font-montserrat;
+
+    .navbar-black {
+        background-color: #211f20;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .navbar-brand {
+        .logo-omneeyat {
+            width: 70px;
+            height: auto;
+        }
+    }
+
+
+    .navbar-nav {
+
+        flex-direction: row;
+
+        .nav-item {
+            //position: relative;
+
+            font-size: 14px;
+            @if $text-align == 'left' {
+                letter-spacing: 1.4px;
+            }
+
+
+            .nav-link {
+                color: #ffffff;
+                @if $text-align == 'right' {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .menu-bar-list {
+            position: relative;
+
+            .dropdown-menu {
+                position: absolute;
+                width: 257px;
+                //height: 199px;
+                margin: 0;
+                top: 46px;
+                @if $text-align == 'right' {
+                    right: -53px;
+                } @else {
+                    left: -48px;
+                }
+
+                background-color: #211f20;
+                border-top: 3px solid #3bbab1;
+                color: white;
+                line-height: 22px;
+                letter-spacing: 0;
+
+                .dropdown-item {
+                    color: white;
+                    font-size: 14px;
+                    @if $text-align == 'right' {
+                        padding-left: 113px;
+                    } @else {
+                        padding-right: 48px;
+                    }
+                    padding-bottom: 12px;
+                    padding-top: 12px;
+                }
+            }
+        }
+    }
+}
+
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.nav-item {
+
+    &.p-nav{
+        @if $text-align == 'right' {
+            padding-right: 25px;
+
+        } @else {
+            padding-left: 25px;
+        }
+
+    }
+
+    &.show {
+        position: absolute;
+    }
+}
+
+#list li {
+    &:last-child {
+        @if $text-align == 'right' {
+            left: -0.3rem;
+        } @else {
+            margin-right: 0;
+        }
+
+        &:after {
+            content: none;
+            color: transparent;
+        }
+    }
+}
+
+#list li::after {
+    //content: " | ";
+    //color:#ffffff ;
+    content: "|";
+    position: absolute;
+    top: 50%;
+    right: -0.3rem;
+    transform: translateY(-50%);
+    font-size: 13px;
+
+}
+
+.dropdown-item:hover {
+    background-color: #3f3e3c;
+}
+
+.bdr-btm {
+    border-bottom: 0.5px solid #464646;
+}
+
+.bg-blue {
+    background-color: #3bbab1;
+}
+
+.talents-category-list {
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &.list-group {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+.nav-link {
+    &.dropdown-toggle {
+        font-size: 12px;
+    }
+}
+
+.navigation nav .navbar-toggler {
+    font-size: 20px;
+    line-height: 24px;
+    color: #ffffff;
+    padding-left: 0;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    background-color: #211f20;
+    border: unset !important;
+    color: white;
+}
+
+.list-group-item:hover {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    border: unset !important;
+    color: #3bbab1;
+}
+
+.dropdown-scrollbar {
+    height: 240px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.style-1::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.style-1::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+.style-1::-webkit-scrollbar-thumb {
+
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #555;
+}

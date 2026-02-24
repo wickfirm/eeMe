@@ -1,0 +1,33 @@
+{
+  "home": "Home",
+
+  "introText": "We are a digital agency that boosts businesses and grows startups",
+  "aboutUsText": "We strive for innovation, believe in creating creative solutions and implementing technology using simple User Experience.",
+  "pageDoesNotExist": "This page does not exist.",
+  "returnToHomepage": "Return to homepage",
+
+  "continue" : "Continue",
+  "emailAddress" :  "Your email address",
+  "digitalHome" : "YOUR DIGITAL HOME",
+  "homeDescription" : "The tech platform that finally allows you to control and own your content.",
+  "KeepMeUptoDate" : "Keep me in the loop with all eeMe updates. ",
+  "link"  :  "By sharing your email, you agree to our Terms of Service and Privacy Policy.",
+  "qoute1": "Creating a space for you and your audience to connect.",
+  "checkProfile" : "Check out these profiles",
+  "seeMore" : "See More",
+  "readyConnect": "Ready to connect?" ,
+  "browseProfiles": "BrowseProfiles",
+  "footerSign" : "SIGN UP TO eeMe",
+  "privateCode" : "Private Invitation code (If available)",
+  "footerMailingList": "Join Our Mailing List",
+  "about" : "About eeMe",
+  "contact" : "Contact",
+  "terms" : "Terms & Conditions",
+  "privacy" : "Privacy Policy",
+  "help"   : "Help" ,
+  "copyRight" : "© Copyright 2022 eeMe",
+  "reserved" : "All Rights Reserved",
+  "subscribeActivities" : "Subscribe to stay up to date with eeMe's latest news and activities",
+  "submit" : "Submit"
+
+}

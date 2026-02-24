@@ -1,0 +1,21 @@
+.page {
+  &.page-events {
+    padding-bottom: 40px;
+
+    section.events{
+      .event-title-category{
+        background: #003768;
+        color: #fff;
+        text-transform: uppercase;
+        @include fontSize(26);
+        padding: 10px 30px;
+        letter-spacing: 2px;
+        overflow: hidden;
+        @media (max-width: $breakpoint-575) {
+          @include fontSize(15);
+          padding: 10px;
+        }
+      }
+    }
+  }
+}

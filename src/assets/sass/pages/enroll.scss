@@ -1,0 +1,35 @@
+section.enroll {
+    font-family: $font-roboto;
+    padding-top:100px;
+    background-color: #ffffff;
+    color:#000000;
+    label {
+        margin-bottom: 8px;
+    }
+
+    button {
+        width: 150px;
+    }
+    .enroll-title{
+        font-family: $font-bold-montserrat;
+        h2{
+           margin-bottom: 2px;
+        }
+    }
+    .enroll-subtitle{
+        font-family: $font-semi-bold-montserrat;
+        font-size: 12px;
+    }
+    .enroll-pvt{
+        color:#b2b1b1;
+        font-size: 25px;
+        font-family: $font-bold-montserrat;
+    }
+    .enroll-input{
+        font-size: 10px;
+        &::placeholder{
+            font-size:10px;
+            color:#808080;
+        }
+    }
+}

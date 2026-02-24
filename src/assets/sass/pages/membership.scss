@@ -1,0 +1,135 @@
+.membership-section-types{
+  padding: 0 70px;
+  @media (max-width: $breakpoint-575) {
+    padding: 0;
+  }
+ p{
+   min-height: 132px;
+ }
+  button, a.vc_general{
+    color: #fff;
+    background-color: #013668 !important;
+    text-transform: uppercase;
+}
+  .wpb_single_image{
+    margin-bottom: 25px;
+  }
+}
+
+.membership-boxes{
+  color:#ffffff;
+  ol,ul{
+    padding-left: 18px;
+  }
+ p{
+   margin-bottom: 20px;
+ }
+  h1{
+    margin-bottom: 15px;
+  }
+  .btn-transparent button, .btn-transparent a{
+    background: transparent;
+    border: 1px solid #ffffff;
+    padding: 13px 75px;
+    margin-top: 15px;
+    margin-bottom: 19px;
+    text-transform: uppercase;
+  }
+}
+
+.continuously-learn
+{
+  h1,h2,h3,h4,h5,h6{
+    text-transform: uppercase;
+  }
+}
+
+div.row.table-style{
+
+  .col-sm-6:nth-child(1) {
+    padding-left: 0;
+  }
+
+  .col-sm-6:nth-child(2) {
+    background-color: #4D917B;
+  }
+
+
+
+}
+
+.stay-current{
+
+  h1,h2,h3,h4,h5,h6{
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  ul{
+    padding-left: 20px !important;
+    li a{
+      text-transform: uppercase;
+      text-decoration: underline !important;
+    }
+  }
+}
+
+.ima-btn a, .ima-btn button{
+  background-color: transparent !important;
+  background: transparent !important;
+  border: 1px solid #013668 !important;
+  padding: 14px 56px !important;
+  text-transform: uppercase;
+  font-weight: 500;
+
+}
+
+.ima-btn.ima-blue a{
+  background-color: #013668 !important;
+  color: white !important;
+}
+
+.ima-btn.ima-white a, .ima-btn.ima-white button{
+  border-color: #fff !important;
+  color: white !important;
+}
+
+
+
+.student-management{
+  .vc_custom_1569937259640{
+    height: 100%;
+    }
+  ul{
+  list-style: none;
+  padding-left: 0;
+  text-transform: uppercase;
+  li{
+    padding-bottom: 10px;
+    @include fontSize(14);
+    font-weight: 500;
+    &:first-child{
+      font-weight: 700;
+    }
+    &:nth-child(3) {
+      padding-left: 18px;
+    }
+    &:nth-child(4) {
+      padding-left: 18px;
+    }
+  }
+}
+
+  @media (min-width: $breakpoint-991+1) {
+  .col-sm-4{
+    padding-left: 0;
+  }
+
+    .col-sm-8 {
+      padding-right: 0;
+    }
+  }
+}
+
+.wrap-div > div:first-child{
+  height: 100%;
+}

@@ -1,0 +1,59 @@
+.leave-message{
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+  width:100%;
+  max-width: 320px;
+  background: #f2f2f2;
+  span.box-title{
+    width: 100%;
+    display: block;
+    color: #003768;
+    text-transform: uppercase;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    i{
+      font-weight: 400;
+      padding-left: 4px;
+    }
+  }
+
+  .ima-chat-body{
+    padding: 17px;
+    border-top: 2px solid #174976;
+    display: none;
+
+    .ima-response div{
+      border-radius: 0;
+      padding: 5px;
+    }
+
+    form{
+      .form-group{
+        margin-bottom: 4px;
+      }
+      input,textarea{
+        border-radius: 0;
+        background-color : #dadfe3;
+        border: none;
+        &::-webkit-input-placeholder {
+          @include fontSize(14);
+          font-style: italic;
+        }
+      }
+      button{
+        width: 100%;
+        display: block;
+        border: none;
+        border-radius: 0;
+        color: #fff;
+        background-color: #003768;
+
+      }
+    }
+
+  }
+}

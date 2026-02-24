@@ -1,0 +1,38 @@
+.form-control {
+    &.email-input {
+        background-color: #ffffff;
+        border: unset;
+        color: black;
+        border-radius: 5px;
+        text-indent: 5px;
+        font-family: var(--font-text);
+        height: 50px;
+
+        &::placeholder {
+            font-size: 16px ;
+            color: #808080;
+        }
+
+        &.newsletter-input{
+            background-color: white;
+            text-indent: 17px;
+            font-size: 14px;
+            height: 50px;
+            //&.bdr-input{
+            //    padding:0;
+            //    border:1px solid #d3d3d3;
+            //    &::placeholder{
+            //        font-size: 14px;
+            //        color:#808080;
+            //    }
+            //}
+        }
+
+        &:focus {
+            background-color: #ffffff;
+            color: black;
+        }
+
+    }
+}
+

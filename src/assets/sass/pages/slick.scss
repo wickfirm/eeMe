@@ -1,0 +1,52 @@
+.slider-container{
+
+
+    .slider-holder{
+
+        .slide-articles{
+            position:relative;
+            .talents-articles{
+                margin: 0;
+                position: absolute;
+                bottom: 5%;
+                left: 50%;
+                margin-right: -50%;
+                transform: translateX(-50%);
+                h1 {
+                    font-size: 25px;
+                    font-weight: bold;
+                    text-align: center;
+                    text-transform: uppercase;
+                }
+                .article-title-slider{
+                    font-size:15px;
+                    line-height: 19px
+                }
+            }
+        }
+    }
+    .slider-controls{
+        .arrow{
+            top:25%;
+            &.arrow-left{
+                position:absolute;
+                color:$main-color;
+                top:50%;
+                right:100%;
+            }
+           &.arrow-right{
+                position:absolute;
+                color:$main-color;
+                top:50%;
+                left:100%;
+            }
+        }
+
+    }
+}
+.slider-holder {
+    visibility: hidden;
+}
+.slider-holder.slick-initialized {
+    visibility: visible;
+}

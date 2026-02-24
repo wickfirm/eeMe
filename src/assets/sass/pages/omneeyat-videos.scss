@@ -1,0 +1,150 @@
+.omneeyat-video-list {
+
+    &.bg-black{
+        background-color: #000000;
+    }
+
+    img {
+        width: 100%;
+    }
+    &.bg-white{
+        background-color: #ffffff;
+    }
+    .name-talent{
+        color: #145258;
+        font-size: 35px;
+        font-family: $font-futura;
+        font-weight: bold;
+    }
+
+    .block-video {
+        height: auto;
+
+        .video {
+            position: relative;
+            .for-image {
+                position: relative;
+                img {
+                    width: 100%;
+                }
+                .ply-btn {
+                    position: absolute;
+                    bottom: 15px;
+                    right: 15px;
+                }
+                .timer {
+                    position: absolute;
+                    top: 20px;
+                    left: 20px;
+                    color: white;
+
+                    p {
+                        font-size: 14px;
+                        line-height: 18px;
+                        font-weight: 200;
+                        font-family: $font-futura;
+                    }
+                }
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+            .description {
+
+                input {
+                    background-color: white;
+                    width: 100%;
+                    padding: 10px;
+                    border-style: none;
+                    color: $main-color;
+                    font-size: 19px;
+                    font-family: $font-futura;
+                }
+                p{
+                    background-color: white;
+                    width: 100%;
+                    padding: 10px;
+                    border-style: none;
+                    color: $main-color;
+                    font-size: 18px;
+                    font-family: $font-futura;
+                    padding-left: 15px;
+                }
+
+            }
+
+            input::-webkit-input-placeholder {
+                font-size: 19.2px;
+                color: #808080;
+                font-family: $font-futura;
+
+            }
+
+        }
+    }
+
+    .personalized-img {
+        display: inline-block;
+        vertical-align: bottom;
+        margin-right: 10px;
+        max-width: 410px;
+    }
+
+    .image-name {
+        display: inline-block;
+        vertical-align: bottom;
+        max-width: 200px;
+    }
+}
+
+.book-video-omneeyat {
+    .single-video {
+        //.video-container{
+        position: relative;
+
+        .btn-book {
+            position: absolute;
+            width: 100%;
+        }
+
+        .book-title {
+            position: absolute;
+            background-color: $main-color;
+            width: 100%;
+            top: 0;
+
+            .head-title-book {
+                font-family: $font-futura;
+                font-size: 17.56px;
+                line-height: 21.56px;
+                font-weight: 200;
+                text-align: center;
+                color: #ffffff;
+
+                p {
+                    font-weight: bold;
+                    font-size: 35.8px;
+                    line-height: 39.8px;
+                    color: #ffffff;
+                    text-align: center;
+                }
+                span{
+                    color:#ffffff;
+                    line-height:35px;
+                }
+            }
+        }
+
+        .play-btn {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    //}
+}

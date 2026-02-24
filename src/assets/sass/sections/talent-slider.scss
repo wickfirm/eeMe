@@ -1,0 +1,102 @@
+.talent-weeks .image-title{
+  width: 100%;
+  max-width: 250px;
+}
+
+.talent-weeks .talent-slider{
+  width: 100%;
+  overflow: hidden;
+}
+
+.talent-weeks .box-talent{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.talent-weeks .box-talent .price{
+  position: relative;
+  right: 10px;
+  top: 18px;
+  background: #a7c5c7;
+  color: #fff;
+  border-radius: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  padding: 6px 4px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.talent-weeks .box-talent .weekly-talent-img{
+  /*position:relative;
+  overflow: hidden;*/
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/*.talent-weeks .box-talent img{
+  width: 100%;
+}*/
+
+
+.talent-weeks .box-talent .box-talent-heading{
+  color: $main-color;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 0;
+}
+
+.talent-weeks .box-talent .text{
+  color: $main-color;
+  font-size: 13px;
+  font-weight:400;
+}
+
+.talent-weeks .box-talent .weekly{
+  color: $main-color;
+  background: #a7c5c7;
+  font-weight: 700;
+  font-size: 16px;
+  position: absolute;
+  top: 5px;
+  right: -17px;
+  transform: rotate(45deg);
+  width: 70px;
+  text-align: center;
+}
+
+.talent-weeks .slick-next{
+  right: 20px;
+}
+
+.talent-weeks .slick-prev{
+  left: 20px;
+  z-index: 9999;
+}
+
+.talent-weeks .slick-next:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f054";
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+.talent-weeks .slick-prev:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f053";
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+  font-weight: 900;
+  font-size: 30px;
+}
+

@@ -1,0 +1,4 @@
+Sitemap: https://eeme.io/sitemap.xml
+User-agent: *
+Disallow:/preview/*
+

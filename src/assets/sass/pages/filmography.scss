@@ -1,0 +1,72 @@
+section.filmography {
+    .film-name{
+        text-transform: capitalize;
+        font-family: $font-bold-montserrat;
+        color: #ffffff;
+        line-height: 48px;
+        font-size: 2.75rem;
+    }
+    .film-description{
+        font-family: $font-roboto;
+        font-size: 15px;
+        line-height: 22px;
+        text-align: left;
+        padding-left: 15px;
+        color: #d3d3d3;
+        margin-top: 30px;
+    }
+    .cast{
+        font-family: $font-roboto;
+        font-size: 15px;
+        line-height: 19px;
+        color: #d3d3d3;
+        margin-top: 13px;
+       div{
+           margin-top: 13px;
+       }
+
+    }
+    .cast-title{
+        font-family: $font-bold-roboto;
+        font-size: 15px;
+        line-height: 19px;
+        color: #FFFFFF;
+        margin-top: 13px;
+    }
+    .cast-talent {
+        color:#3BBAB1;
+        text-decoration: none;
+    }
+    .cast-talent:hover {
+        color:#d3d3d3;
+        text-decoration: none;
+    }
+    .cast-film{
+        padding-top: 30px;
+        text-transform: capitalize;
+        font-family: $font-bold-montserrat;
+        color: #ffffff;
+        line-height: 24px;
+        font-size: 20px;
+    }
+    .iframe-block{
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 56.25%;
+        .iframe-responsive{
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .poster{
+        width: 200px;
+        height: 282px;
+        object-fit: cover;
+    }
+}

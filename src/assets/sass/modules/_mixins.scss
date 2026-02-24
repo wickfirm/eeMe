@@ -1,0 +1,185 @@
+@mixin background-cover() {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+@mixin absolute-full-section() {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+@mixin transform($transform) {
+  -webkit-transform: $transform;
+  -moz-transform: $transform;
+  -ms-transform: $transform;
+  -o-transform: $transform;
+  transform: $transform;
+}
+
+  @mixin transform-several($transform...) {
+  -webkit-transform: $transform;
+  -moz-transform: $transform;
+  -ms-transform: $transform;
+  -o-transform: $transform;
+  transform: $transform;
+}
+
+@mixin background-position($position) {
+  background-position: $position;
+}
+
+@mixin transition-all($speed) {
+  -webkit-transition: all $speed;
+  -moz-transition: all $speed;
+  transition: all $speed;
+}
+
+@mixin animation($animation) {
+  -webkit-animation: $animation;
+  -moz-animation: $animation;
+  -ms-animation: $animation;
+  -o-animation: $animation;
+  animation: $animation;
+}
+
+@mixin transform-translate-all($transform) {
+  -webkit-transform: translate($transform, $transform);
+  -moz-transform: translate($transform, $transform);
+  -ms-transform: translate($transform, $transform);
+  -o-transform: translate($transform, $transform);
+  transform: translate($transform, $transform);
+}
+
+@mixin transform-translate-X($transform) {
+  -webkit-transform: translateX($transform);
+  -moz-transform: translateX($transform);
+  -ms-transform: translateX($transform);
+  -o-transform: translateX($transform);
+  transform: translateX($transform);
+}
+
+@mixin transform-translate-Y($transform) {
+  -webkit-transform: translateY($transform);
+  -moz-transform: translateY($transform);
+  -ms-transform: translateY($transform);
+  -o-transform: translateY($transform);
+  transform: translateY($transform);
+}
+
+@mixin reset-padding-margin() {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin inline-li() {
+  display: inline-block;
+  list-style: none;
+}
+
+@mixin box-shadow($hor_length, $ver_length, $blur_radius, $spread_radius, $color) {
+  -webkit-box-shadow: $hor_length $ver_length $blur_radius $spread_radius $color;
+  -moz-box-shadow: $hor_length $ver_length $blur_radius $spread_radius $color;
+  box-shadow: $hor_length $ver_length $blur_radius $spread_radius $color;
+}
+
+@mixin remove_child_side_margins() {
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+@mixin opacity($value, $important: '') {
+  opacity: $value #{$important};
+  filter: alpha(opacity=#{$value * 100}) #{$important};
+}
+
+@mixin placeholder {
+    ::-webkit-input-placeholder {@content}
+    :-moz-placeholder           {@content}
+    ::-moz-placeholder          {@content}
+    :-ms-input-placeholder      {@content}
+}
+
+@mixin border-radius($radius, $important: '') {
+  -webkit-border-radius: $radius#{$important};
+  -moz-border-radius: $radius#{$important};
+  -ms-border-radius: $radius#{$important};
+  -o-border-radius: $radius#{$important};
+  border-radius: $radius#{$important};
+}
+
+@mixin clear { content: ''; line-height: 0; display: table; clear: both; }
+
+@mixin basic-triangle($length, $direction, $color) {
+  width: 0;
+  height: 0;
+
+  @if ($direction == 'up' or $direction == 'down') {
+    border-left: $length solid transparent;
+    border-right: $length solid transparent;
+  }
+
+  @if ($direction == 'right' or $direction == 'left') {
+    border-top: $length solid transparent;
+    border-bottom: $length solid transparent;
+  }
+
+  @if ($direction == 'up') {
+    border-bottom: $length solid $color;
+  }
+
+  @if ($direction == 'down') {
+    border-top: $length solid $color;
+  }
+
+  @if ($direction == 'right') {
+    border-left: $length solid $color;
+  }
+
+  @if ($direction == 'left') {
+    border-right: $length solid $color;
+  }
+}
+
+@mixin button_style($color) {
+  background-color: $color;
+  border-color: $color;
+}
+
+@mixin check-sign($top, $left, $width, $height, $border-color) {
+  content: '';
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+  border: 1px solid $border-color;
+  border-top: none;
+  border-left: none;
+  -webkit-transform: scale(1) rotate(45deg);
+  -moz-transform: scale(1) rotate(45deg);
+  -ms-transform: scale(1) rotate(45deg);
+  -o-transform: scale(1) rotate(45deg);
+  transform: scale(1) rotate(45deg);
+  opacity: 1;
+}
+
+@function calculateRem($size) {
+  $remSize: $size / $base-fontsize;
+  @return #{$remSize}rem;
+}
+@mixin fontSize($size) {
+  font-size: #{$size}px; //Fallback in px
+  line-height: #{$size + 4}px;
+  font-size: calculateRem($size);
+}
+

@@ -1,0 +1,131 @@
+.btn {
+    outline: none !important;
+    vertical-align: middle;
+    letter-spacing: 0.2rem;
+    text-align: center;
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    padding: 14px 16px;
+    font-size: 14px;
+
+    &.btn-primary-inverse {
+        background: $white;
+        color: $primary;
+        border-color: $primary;
+
+        &:hover {
+            background: $primary;
+            color: $white;
+        }
+
+        &:focus {
+            background: $primary;
+            color: $white;
+        }
+
+        &:active {
+            background: $primary;
+            color: $white;
+        }
+    }
+
+    &.btn-dark {
+        background: $black;
+        color: $white;
+        border: unset;
+
+        &:hover {
+            background: $white;
+            color: $black;
+        }
+
+        &:focus {
+            background: $white;
+            color: $black;
+        }
+
+        &:active {
+            background: $white;
+            color: $black;
+        }
+    }
+
+    &.btn-primary {
+        background: $primary;
+        color: $white !important;
+        border-color: $primary;
+
+        &:hover {
+            background: $white;
+            color: $primary !important;
+        }
+
+        &:focus {
+            background: $white;
+            color: $primary !important;
+        }
+
+        &:active {
+            background: $white;
+            color: $primary;
+        }
+
+    }
+
+
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+    background: $white;
+    color: $primary;
+}
+
+.bdr-btn {
+
+
+}
+
+//.nav-pills .nav-link{
+//    &.clicked-btn {
+//        border: 1px solid $white !important;
+//    }
+//}
+.clicked-btn {
+    background-color: #211f20;
+    color: #ffffff;
+    border-color: #ffffff !important;
+
+}
+
+.disabled-btn {
+    pointer-events: none !important;
+}
+
+.input-group {
+    z-index: 0;
+}
+
+
+.order-btn {
+    .nav-item {
+        .active {
+            background-color: #211f20 !important;
+            color: #ffffff !important;
+            border: 1px solid $white !important;
+        }
+    }
+}
+
+.link-primary-muted{
+    color: $primary;
+    &:hover{
+        color: var(--muted) !important;
+    }
+}
+.info{
+    border: unset !important;
+}
+.info i:hover, .info i:active , .info i:focus , .info:hover , .info:active , .info:focus , {
+    color: var(--muted);
+    border: unset !important;
+}

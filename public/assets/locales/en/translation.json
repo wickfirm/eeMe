@@ -1,0 +1,248 @@
+{
+  "webName" : "eeMe",
+  "continue" : "Continue",
+  "emailAddress" :  "Your email address",
+  "digitalHome" : "YOUR DIGITAL HOME",
+  "homeDescription" : "The tech platform that finally allows you to control and own your content.",
+  "KeepMeUptoDate" : "Keep me in the loop with all eeMe updates. ",
+  "link"  :  "By sharing your email, you agree to our Terms of Service and Privacy Policy.",
+
+  "searchPlaceHolder" : "Looking for someone you love?",
+
+  "qoute1": "Creating a space for you and your audience to connect.",
+
+  "checkProfiles" : "Check out these profiles",
+
+
+  "readyConnect": "Ready to connect?" ,
+  "talents" : "Talents",
+
+
+  "submit" : "Submit",
+  "seeMore" : "See More",
+  "browseProfiles": "Browse Profiles",
+
+
+  "newsletterSuccess"  : "Your subscription to eeMe's mailing list has been confirmed. ",
+  "pageTitle" : "A space for people, brands and the audience to connect.",
+  "acceptedPayments" : "Accepted Payments",
+  "footerSign" : "SIGN UP TO eeMe",
+  "privateCode" : "Private Invitation code (If available)",
+  "footerMailingList": "Join Our Mailing List",
+  "about" : "About eeMe",
+  "contact" : "Contact",
+  "terms" : "Terms & Conditions",
+  "privacy" : "Privacy Policy",
+  "help"   : "Help" ,
+  "copyRight" : "© Copyright 2023 eeMe",
+  "reserved" : "All Rights Reserved",
+  "subscribeActivities" : "Subscribe to stay up to date with eeMe's latest news and activities",
+
+  "talentIndexMainTitle": "In the News",
+  "pageTalentIndexTitle" : "Talents meet on eeMe",
+  "featured" : "Featured",
+  "newOnEeme": "New On eeMe",
+  "businessShoutout" : "Need a business shoutout?",
+
+  "categoryWelcomeStatement" : "WELCOME TO THE WORLD OF ",
+
+  "signUpFree" : "Sign Up For Free",
+
+  "articleShare" : "Share the article:",
+  "requestVideo" : "Book a request from ",
+  "moreOn" : "More on",
+
+  "now" : "now",
+  "book": "Book Now",
+
+  "onBoardingTitle" : "LET’S BUILD YOUR TALENT MEDIA KIT / ONLINE PORTFOLIO FOR FREE",
+  "onBoardingDescription" : "If you're an actor, a singer, content creator, songwriter, filmmaker, media personality, athlete, or an expert in your field, we can help you quickly create a media kit and online portfolio on the eeMe platform at zero cost. Save time and money.",
+  "onBoardingNote" : "*Once you register and enter your information in the required fields, the eeMe team will review your application. We typically go over profiles within 24 hours, although in some cases, it may take longer. You will receive status updates via email.",
+  "onBoardingFormTitle" : "IT’S FREE - FOREVER! ",
+  "onBoardingStep1" : "Get your all-in-one digital portfolio and showcase content from ALL your online platforms",
+  "onBoardingStep2" : "Be part of the eeMe community",
+  "onBoardingStep3" : "Grab the attention of brands who are looking for talents/artists like yourself",
+  "onBoardingStep4" : "Easy setup. We will help you go live in less than 10 minutes" ,
+  "onBoardingStep5" : "No hidden fees, no commissions. You have full control of your portfolio. And IT’S FREE FOREVER!",
+  "onBoardingTitle2" : "SHOW OFF YOUR ALL-IN-ONE PORTFOLIO TO BRANDS AND  FANS",
+  "onBoardingFormName": "Your name or screen name",
+  "onBoardingFormIgUserName" : "Instagram username or url",
+  "onBoardingFormPhoneNumber" : "Your phone number",
+  "onBoardingFormYoutubeUsername" : "YouTube url" ,
+  "onBoardingFormOtherSocial" :"Any other social media account url" ,
+  "onBoardingFormProfileLink"  :"Username /Profile link" ,
+  "onBoardingFormFollowers" :"How many followers/subscribers do you have?",
+  "onBoardingFormPrivateCode" : "Private Invitation code (If available)",
+  "onBoardingFormPackage" : "Which package do you prefer?",
+
+  "onBoardingTechnologies" : "eeMe TECHNOLOGIES ALLOW YOU TO TAKE CONTROL OF YOUR CAREER",
+  "onBoardingTalentMediaKit" : "TALENTS’ MEDIA KIT",
+  "onBoardingPMedia_1" : "Your own online media kit / website",
+  "onBoardingPMedia_2" : "About you",
+  "onBoardingPMedia_3" : "Social Media Portfolio" ,
+  "onBoardingPMedia_4" : "Music/Playlists",
+  "onBoardingPMedia_5" : "Past & Future Projects" ,
+  "onBoardingPMedia_6" : "Charity Works",
+  "onBoardingTalentBooking" : "TALENTS’ BOOKING ENGINE",
+  "onBoardingPBooking_1" : "Everything in Talents’ Media Kit, plus:",
+  "onBoardingPBooking_2" : "Booking or e-commerce functionality, sell anything on your website" ,
+  "onBoardingPBooking_3" : "Basic Social Media Analytics",
+  "onBoardingPrice" : "$3.97/MONTH",
+  "onBoardingInsights" : "TALENTS’ INSIGHTS" ,
+  "onBoardingPInsight_1" : "Everything In TALENTS’ BOOKING ENGINE, Plus:",
+  "onBoardingPInsight_2" : "Advanced Social Media Analytics" ,
+  "onBoardingPInsight_3" : "Appeal To Brands For Collaborations",
+  "onBoardingInsightPrice" : "$5.97/MONTH",
+  "onBoardingTalent" : "GREAT PEOPLE USING eeMe",
+  "onBoardingTalentQuote" : "\"We’ve created this technology to empower talents by giving them an all-in-one platform to showcase their portfolio. We help you open the doors to greater opportunities for brand collaboration and career growth. Focus on your talent, we\\'ll focus on your digital space.”",
+  "onBoardingCeoName" : "Mohamed Bitar, Founder/CEO" ,
+  "onBoardingeeMe" : "eeMe",
+
+  "talentVerify" : "Verify",
+  "notifyAlertMessage" : "Thank you. You'll be notified as soon as talent is available",
+  "talentNotifyButton" : "Notify me when available",
+  "talentNotAvailable" : "Temporarily unavailable",
+
+
+  "instagram" : "Instagram",
+  "engagementRate" : "Engagement Rate",
+  "mediaCount" : "Media Count",
+  "avgViews" : "Avg Views",
+  "followers" : "Followers",
+  "tikTok" : "TikTok ",
+  "following" : "Following",
+  "likes" : "Likes",
+  "videoCount" : "Video Count" ,
+  "youTube"  : "YouTube",
+  "avgComments" : "Avg Comments",
+  "avgLikes" : "Avg Likes",
+  "lookalikesSimilarTopics" : "Lookalikes (similar topics)",
+  "popular" : "Popular",
+  "audienceDataFollower" : "Audience Data - Followers",
+  "brandAffinity" : "Audience Brand Affinity",
+  "interestAffinity" : "Audience Interest Affinity",
+  "audienceLookalikes" : "Audience Lookalikes",
+  "notableFollowers" : "Notable Followers",
+  "audienceDataLikes" : "Audience Data - Likes",
+  "audienceDataComments" : "Audience Data - Comments",
+
+  "inTheSpotLight" : "In The Spotlight",
+  "findMeOn" : "Find Me On",
+  "media" : "In The Media",
+  "socialFeed" : "Social Feed" ,
+  "insights" : "My Insights" ,
+  "collabs" : "My Collabs",
+  "personalizedVideos" : "Personalized Videos",
+
+  "bookTitle" : "Book a personalized video from {{talent}}",
+  "bookPersonalizedVideoTitle" : "{{talent}} has {{responseTime}} days to complete the video. Your receipt and order updates will be sent to the email provided under Delivery Information. When your request is completed, we'll email a link to view, share, or download your eeMe. If for some reason your video isn't completed, the ${{price}} will be refunded.",
+  "requestCampaignTitle" : "Talent & Content Creator Marketing Brief" ,
+  "requestCampaignDescription" : "The brief should explicitly state campaign objectives, expectations, guidelines and deliverables so that the potential talent or content creator will have all the necessary details prior to collaboration. This will ensure that the artist/content creator and your brand goals are aligned. It will also boost your chances of a successful marketing campaign. To ensure a smooth process, here is a glimpse of what an exceptional marketing brief should include:",
+
+  "form" : {
+    "personalizedShoutout" : "Personalized",
+    "requestBrief" : "Brief",
+    "thisVideoIs" : "This video is for:",
+    "videoTargetSelf" : "Myself",
+    "videoTargetOther" : "Someone else",
+    "name": "Name",
+    "fromPlaceholder" : "Youssef",
+    "to": "To" ,
+    "toPlaceholder": "Dana",
+    "from" : "From",
+    "occasionPlaceHolder" : "Select an Occasion",
+    "additionalRequest" : "Further customize your videos (optional)",
+    "instructions" : "My instructions for {{talent}} are:",
+    "instructionPlaceholder" : "My wife's birthday is coming soon and she's a big fan. I always call her pumpkin. Please wish her a happy birthday.",
+    "phoneNumberPlaceholder" : "(0XXX) YYYY YYYY",
+    "phoneNumber" : "Phone Number",
+    "email" : "Email",
+    "promoCode" : "Promo Code (Optional)",
+    "makePublic" : "Make the video public on eeMe",
+    "bookPersonalizedVideo" : "Book Your Personalized Video For",
+    "bookNowFor" : "Book Now For",
+    "pleaseSelect" : "Please Select",
+    "message" : "Message/Brief",
+    "messagePlaceholder" : "Write out all the details that would help us better understand what you're looking for.",
+    "occasionTitle"                   : "Occasion",
+    "brief" : {
+      "name" : "Your Name",
+      "campaignName" : "Campaign Name",
+      "brandName" : "What's the name of your company/brand?",
+      "brief" : "Brief",
+      "message" : "Write out all the details that would help us better understand what you're looking for.",
+      "deliveryDate" : "Delivery Date",
+      "customFee" : "Custom Fee",
+      "extraSettings" : "Extra Settings",
+      "usageRights" : "Content Usage Rights",
+      "fullRights" : "Full usage rights",
+      "twoRights" : "Two-year usage rights",
+      "noRights" : "No usage rights",
+      "customRights": "Custom usage rights"
+    },
+
+    "bookCondition" : "By booking, you agree to eeMe's <a class='link-primary-muted' href='/terms'>Terms of Service</a> and  <a class='link-primary-muted' href='/privacy'>Privacy Policy</a>."
+
+
+  },
+
+  "payment" : {
+    "paymentCancelled"                : "Your order has been cancelled" ,
+    "paymentCancelledDescription"     : "There was an error in the transaction. Try again or contact hello@omneeyat.com ." ,
+    "paymentDeclined"                 : "Order Declined" ,
+    "paymentDeclinedDescription"      : "Your order has been declined." ,
+    "paymentApproved"                 : "Thank you for your order" ,
+    "paymentApprovedDescription"      : "Your order has been received and is now being processed." ,
+    "orderDetails"                    : "Order Details" ,
+    "yourOrderDetails"                : "Your Order Details" ,
+    "paymentThanksStatement"          : "Thank you for giving us the opportunity to connect you with your favorite talent." ,
+    "orderReceivedStatement"          : "Your request has been received and is now being processed." ,
+    "donationStatement"               : "Thanks to you, $1 will be donated to someone in need." ,
+    "paymentSuccessContactStatement"  : "Should you have any questions, please contact us by replying to the confirmation email (check spam folder in case) ." ,
+    "paymentWuStatement"              : "For the final step, please contact us by replying to the confirmation email (check spam folder in case) . " ,
+    "orderNumber"                     : "Order Number" ,
+    "successDonation"                 : "Your donation has been made." ,
+    "cancelDonation"                  : "There was an error in the transaction. Try again or contact hello@omneeyat.com ." ,
+    "wuDonation"                      : "For the final step, please contact hello@omneeyat.com.",
+    "paymentMethod"                   : "Payment Method",
+    "successBsnOrder"                 : "Thank you for giving us the opportunity to connect you with your favorite talent.Your request has been received and is now being processed.Thanks to you, $1 will be donated to someone in need.Should you have any questions, please contact us by replying to the confirmation email (check spam folder in case) .",
+    "cancelledBsnOrder"               : "There was an error in the transaction. Try again or contact hello@omneeyat.com for support.",
+    "pendingBsnOrder"                 : "<h2>Thank you for giving us the opportunity to connect you with your favorite talent <span>&#10084;&#65039;</span> </h2> <br> Your request has been received and is now being processed. <br>   For the final step, please contact us by replying to the confirmation email (check spam folder in case) . ",
+    "requestBriefSuccess"             : "You have successfully submitted your request!"
+
+  },
+
+  "button" : {
+    "submit" : "Submit",
+    "downloadVideo" : "Download Video"
+  },
+
+  "filmography" : {
+    "filmography" : "Filmography",
+    "cast" : "Cast"
+  },
+
+  "talent" : {
+    "verifyIdentityTitle" : "Are you {{talent}}? If yes, please fill the below form:"
+  },
+  "video" : {
+    "title" : "We've got something special for you!",
+    "hello": "Hello {{name}}!",
+    "readyVideo" : "Your personalized video from {{talent}} is ready!"
+  },
+
+  "socialMeta": {
+    "home" : {
+      "title" : "A space for people, brands and the audience to connect."
+    },
+    "talent" : {
+      "titleIndex" : "Talents meet on eeMe" ,
+      "title" : "{{talent}} for eeMe",
+      "description" : "Connect better with {{talent}}! Stay up-to-date with his latest stories. Know where {{talent}} is in the digital space. Visit {{talent}}'s profile on eeMe!",
+      "descriptionIndex" : "You can manage your own content on the platform"
+    },
+    "video" : {
+      "description" : "Something special from {{talent}}"
+    }
+  }
+}

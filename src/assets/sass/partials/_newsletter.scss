@@ -1,0 +1,75 @@
+.newsletter-form-container {
+    position: relative;
+    .alert-box {
+        display: none;
+    }
+
+    input.form-control {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+
+        &:focus {
+            outline-color: transparent;
+            outline-style: none;
+            box-shadow: none;
+        }
+    }
+
+    button {
+        color: #ffffff;
+        font-weight: bold;
+        border-radius: 0;
+
+        &:hover {
+            background-color: #ffffff;
+            color: $main-color;
+        }
+    }
+}
+
+footer {
+    &.landing-page {
+        .newsletter-form-container {
+            border-bottom-color: $main-color;
+
+            input.form-control {
+                color: $main-color;
+            }
+
+            button {
+                color: $main-color;
+
+                &:hover {
+                    background-color: $main-color;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}
+
+.left-right{
+    position: absolute;
+    top:0;
+    height:50px;
+
+
+}
+.ar{
+    .left-right{
+
+            left:0;
+
+    }
+}
+.en{
+    .left-right{
+            right:0;
+
+    }
+}
+#email-error{
+    color: #dc3545;
+
+}
