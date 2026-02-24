@@ -42,8 +42,8 @@ export default async function CategoryPage({ params }: Props) {
     // Talents are usually nested inside the category response
     if (Array.isArray(cr?.talents)) {
       talents = cr.talents as Talent[]
-    } else if (category && Array.isArray((category as Record<string, unknown>).talents)) {
-      talents = (category as Record<string, unknown>).talents as Talent[]
+    } else if (category && Array.isArray((category as unknown as Record<string, unknown>).talents)) {
+      talents = (category as unknown as Record<string, unknown>).talents as Talent[]
     }
 
     const acr = allCatsRes as Record<string, unknown>
