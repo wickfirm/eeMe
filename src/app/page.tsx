@@ -7,7 +7,7 @@ export default async function HomePage() {
   let data: Record<string, unknown> = {}
 
   try {
-    data = await getHomeData()
+    data = await getHomeData() as Record<string, unknown>
   } catch {
     // API down or error — render shell
   }
