@@ -15,7 +15,7 @@ export default async function VideoPage({ params }: Props) {
   try {
     const res = await getVideoPreview(params.code)
     video = res.video
-    talent = res.talent
+    talent = res.talent ?? null
     if (!video?.id) return notFound()
   } catch {
     return notFound()
