@@ -12,8 +12,8 @@ import type {
 
 const PAGE_SIZE = 15
 
-// ─── JSONB field extractor ────────────────────────────────────────────────────
-// Handles fields stored as { "en": "...", "ar": "..." } JSON objects
+// ─── JSON/JSONB field extractor ───────────────────────────────────────────────
+// Handles both true JSONB and varchar columns containing {"en":"…","ar":"…"}
 function j(field: unknown, lang = 'en'): string {
   if (!field) return ''
   if (typeof field === 'string') {
@@ -26,10 +26,93 @@ function j(field: unknown, lang = 'en'): string {
   return String(field)
 }
 
-// ─── Shared row type ──────────────────────────────────────────────────────────
 type Row = Record<string, unknown>
 
-// ─── Row → Type transformers ──────────────────────────────────────────────────
+// ─── Flat SELECT — no FK joins (FK constraints absent in this schema) ─────────
+// is_published / is_active are smallint (1/0), NOT boolean
+const TALENT_SELECT =
+  'id, user_id, slug, image, cover_image, description, ' +
+  'is_available, is_verified, is_active, is_published'
+
+// ─── Batch-fetch users by IDs → { [userId]: userRow } ────────────────────────
+async function fetchUserMap(ids: number[]): Promise<Record<number, Row>> {
+  const uniq = [...new Set(ids.filter(Boolean))]
+  if (!uniq.length) return {}
+  const { data } = await supabase.from('users').select('id, name').in('id', uniq)
+  const map: Record<number, Row> = {}
+  for (const u of data ?? []) map[Number((u as Row).id)] = u as Row
+  return map
+}
+
+// ─── Build userMap from a list of talent rows ─────────────────────────────────
+async function userMapFromTalents(rows: Row[]): Promise<Record<number, Row>> {
+  const ids = rows.map(r => Number(r.user_id)).filter(Boolean)
+  return fetchUserMap(ids)
+}
+
+// ─── Fetch junction data for a single talent ID ───────────────────────────────
+// Returns social, prices, categories via direct queries (no FK join syntax)
+async function fetchTalentJunctions(talentId: number) {
+  const [socialRes, pricesRes, catLinksRes] = await Promise.allSettled([
+    supabase
+      .from('talents_social')
+      .select('id, social_media_id, followers, url')
+      .eq('talent_id', talentId),
+
+    supabase
+      .from('talents_prices')
+      .select('id, talent_price_type_id, order_type, price, delivery_days')
+      .eq('talent_id', talentId),
+
+    supabase
+      .from('talents_category')
+      .select('category_id')
+      .eq('talent_id', talentId),
+  ])
+
+  const social: TalentSocial[] =
+    socialRes.status === 'fulfilled' && !socialRes.value.error
+      ? (socialRes.value.data ?? []).map(s => ({
+          id:              Number((s as Row).id),
+          social_media_id: Number((s as Row).social_media_id),
+          followers:       (s as Row).followers != null ? Number((s as Row).followers) : undefined,
+          url:             ((s as Row).url as string) || undefined,
+        }))
+      : []
+
+  const prices: TalentPrice[] =
+    pricesRes.status === 'fulfilled' && !pricesRes.value.error
+      ? (pricesRes.value.data ?? []).map(p => ({
+          id:            Number((p as Row).id),
+          type:          Number((p as Row).talent_price_type_id),
+          price:         Number((p as Row).price),
+          currency:      'USD',
+          delivery_days: (p as Row).delivery_days != null ? Number((p as Row).delivery_days) : undefined,
+        }))
+      : []
+
+  let categories: Category[] = []
+  if (
+    catLinksRes.status === 'fulfilled' &&
+    !catLinksRes.value.error &&
+    catLinksRes.value.data?.length
+  ) {
+    const catIds = (catLinksRes.value.data as Row[])
+      .map(l => Number(l.category_id))
+      .filter(Boolean)
+    if (catIds.length) {
+      const { data: cats } = await supabase
+        .from('categories')
+        .select('id, name, slug, image')
+        .in('id', catIds)
+      categories = (cats ?? []).map(c => xCategory(c as Row))
+    }
+  }
+
+  return { social, prices, categories }
+}
+
+// ─── Row → typed transformers ─────────────────────────────────────────────────
 
 function xCategory(row: Row): Category {
   return {
@@ -42,33 +125,15 @@ function xCategory(row: Row): Category {
   }
 }
 
-function xTalent(row: Row, lang = 'en'): Talent {
-  const user = ((row.users ?? {}) as Row)
-
-  const categories: Category[] = Array.isArray(row.talents_category)
-    ? (row.talents_category as Array<{ categories: Row | null }>)
-        .filter(tc => tc.categories)
-        .map(tc => xCategory(tc.categories!))
-    : []
-
-  const social: TalentSocial[] = Array.isArray(row.talents_social)
-    ? (row.talents_social as Row[]).map(s => ({
-        id:              Number(s.id),
-        social_media_id: Number(s.social_media_id),
-        followers:       s.followers != null ? Number(s.followers) : undefined,
-        url:             (s.url as string) || undefined,
-      }))
-    : []
-
-  const prices: TalentPrice[] = Array.isArray(row.talents_prices)
-    ? (row.talents_prices as Row[]).map(p => ({
-        id:            Number(p.id),
-        type:          Number(p.talent_price_type_id),
-        price:         Number(p.price),
-        currency:      'USD',
-        delivery_days: p.delivery_days != null ? Number(p.delivery_days) : undefined,
-      }))
-    : []
+function xTalent(
+  row: Row,
+  lang = 'en',
+  userMap?: Record<number, Row>,
+  extra?: { social?: TalentSocial[]; prices?: TalentPrice[]; categories?: Category[] },
+): Talent {
+  const userId = Number(row.user_id)
+  // Accept user from batch map, or from an embedded row (future FK), or fall back to empty
+  const user: Row = userMap?.[userId] ?? ((row.users as Row) ?? {})
 
   return {
     id:             Number(row.id),
@@ -79,11 +144,12 @@ function xTalent(row: Row, lang = 'en'): Talent {
     description_ar: j(row.description, 'ar') || undefined,
     image:          (row.image as string) || undefined,
     cover_image:    (row.cover_image as string) || undefined,
-    is_available:   Boolean(row.is_available),
-    is_verified:    Boolean(row.is_verified),
-    categories:     categories.length ? categories : undefined,
-    social:         social.length     ? social     : undefined,
-    prices:         prices.length     ? prices     : undefined,
+    // is_available / is_verified stored as smallint 1/0 OR boolean true/false
+    is_available:   row.is_available === 1 || row.is_available === true,
+    is_verified:    row.is_verified  === 1 || row.is_verified  === true,
+    categories:     extra?.categories?.length ? extra.categories : undefined,
+    social:         extra?.social?.length     ? extra.social     : undefined,
+    prices:         extra?.prices?.length     ? extra.prices     : undefined,
   }
 }
 
@@ -96,29 +162,19 @@ function xArticle(row: Row, lang = 'en'): TalentArticle {
     body:       j(row.content, lang) || undefined,
     image:      (row.image as string) || undefined,
     created_at: String(row.created_at ?? ''),
-    talent:     row.talents ? xTalent(row.talents as Row, lang) : undefined,
+    // talent is optional; embedded FK join removed (no FK constraints exist)
   }
 }
 
-// ─── Shared SELECT fragment for talent queries ────────────────────────────────
-const TALENT_SELECT = [
-  'id', 'slug', 'image', 'cover_image', 'description',
-  'is_available', 'is_verified', 'is_active', 'is_published',
-  'users!inner(name)',
-  'talents_category(categories(id, name, slug, image))',
-  'talents_social(id, social_media_id, followers, url)',
-  'talents_prices(id, talent_price_type_id, order_type, price, delivery_days)',
-].join(', ')
-
-// ─── Home ────────────────────────────────────────────────────────────────────
+// ─── Home ─────────────────────────────────────────────────────────────────────
 
 export async function getHomeData(): Promise<HomeData> {
   const [talentsRes, catsRes, articlesRes, pageRes] = await Promise.allSettled([
     supabase
       .from('talents')
       .select(TALENT_SELECT)
-      .eq('is_published', true)
-      .eq('is_active', true)
+      .eq('is_published', 1)   // smallint, not boolean
+      .eq('is_active', 1)
       .order('id', { ascending: false })
       .limit(12),
 
@@ -130,8 +186,8 @@ export async function getHomeData(): Promise<HomeData> {
 
     supabase
       .from('articles')
-      .select('id, title, slug, content, image, created_at, talents(id, slug, image, users(name))')
-      .eq('is_published', true)
+      .select('id, title, slug, content, image, created_at')
+      .eq('is_published', 1)
       .order('created_at', { ascending: false })
       .limit(6),
 
@@ -142,10 +198,13 @@ export async function getHomeData(): Promise<HomeData> {
       .maybeSingle(),
   ])
 
-  const talents: Talent[] =
+  // Enrich talent rows with user names via a single batch query
+  const talentRows: Row[] =
     talentsRes.status === 'fulfilled' && !talentsRes.value.error
-      ? (talentsRes.value.data ?? []).map(r => xTalent(r as Row))
+      ? (talentsRes.value.data ?? []) as Row[]
       : []
+  const userMap = await userMapFromTalents(talentRows)
+  const talents: Talent[] = talentRows.map(r => xTalent(r, 'en', userMap))
 
   const categories: Category[] =
     catsRes.status === 'fulfilled' && !catsRes.value.error
@@ -181,7 +240,7 @@ export async function getHomePage(): Promise<HomeData> {
   return getHomeData()
 }
 
-// ─── Talents ─────────────────────────────────────────────────────────────────
+// ─── Talents ──────────────────────────────────────────────────────────────────
 
 export async function getTalentIndex(page = 1) {
   const from = (page - 1) * PAGE_SIZE
@@ -190,15 +249,18 @@ export async function getTalentIndex(page = 1) {
   const { data, count, error } = await supabase
     .from('talents')
     .select(TALENT_SELECT, { count: 'exact' })
-    .eq('is_published', true)
-    .eq('is_active', true)
+    .eq('is_published', 1)
+    .eq('is_active', 1)
     .order('id', { ascending: false })
     .range(from, to)
 
   if (error) throw new Error(error.message)
 
+  const rows = (data ?? []) as Row[]
+  const userMap = await userMapFromTalents(rows)
+
   return {
-    data: (data ?? []).map(r => xTalent(r as Row)),
+    data: rows.map(r => xTalent(r, 'en', userMap)),
     meta: {
       current_page: page,
       last_page:    Math.max(1, Math.ceil((count ?? 0) / PAGE_SIZE)),
@@ -211,28 +273,43 @@ export async function getTalentIndex(page = 1) {
 export async function getTalent(lang: string, slug: string) {
   const langKey = lang === 'ar' ? 'ar' : 'en'
 
+  // slug is varchar containing JSON string e.g. {"en":"ayman-bitar","ar":"..."}
+  // Use ilike to match the "en":"slug" substring
   const { data, error } = await supabase
     .from('talents')
     .select(TALENT_SELECT)
-    .filter(`slug->>${langKey}`, 'eq', slug)
-    .eq('is_published', true)
+    .ilike('slug', `%"${langKey}":"${slug}"%`)
+    .eq('is_published', 1)
     .maybeSingle()
 
   if (!data || error) {
-    // Fallback: try English slug when Arabic lookup misses
+    // Fallback: try English slug when language-specific lookup misses
     if (langKey !== 'en') {
       const { data: fb } = await supabase
         .from('talents')
         .select(TALENT_SELECT)
-        .filter('slug->>en', 'eq', slug)
-        .eq('is_published', true)
+        .ilike('slug', `%"en":"${slug}"%`)
+        .eq('is_published', 1)
         .maybeSingle()
-      if (fb) return { talent: xTalent(fb as Row, lang) }
+      if (fb) {
+        const t = fb as Row
+        const [userMap, junctions] = await Promise.all([
+          fetchUserMap([Number(t.user_id)]),
+          fetchTalentJunctions(Number(t.id)),
+        ])
+        return { talent: xTalent(t, lang, userMap, junctions) }
+      }
     }
     return { talent: null }
   }
 
-  return { talent: xTalent(data as Row, lang) }
+  const t = data as Row
+  const [userMap, junctions] = await Promise.all([
+    fetchUserMap([Number(t.user_id)]),
+    fetchTalentJunctions(Number(t.id)),
+  ])
+
+  return { talent: xTalent(t, lang, userMap, junctions) }
 }
 
 export async function getTalentBookData(lang: string, slug: string) {
@@ -240,50 +317,93 @@ export async function getTalentBookData(lang: string, slug: string) {
 
   const { data: talentRow } = await supabase
     .from('talents')
-    .select(`
-      id, slug, image, cover_image, description,
-      users!inner(name),
-      talents_prices(id, talent_price_type_id, order_type, price, delivery_days),
-      talent_addons(id, price, is_active, addons(id, name, description, order_type))
-    `)
-    .filter(`slug->>${langKey}`, 'eq', slug)
-    .eq('is_published', true)
+    .select(TALENT_SELECT)
+    .ilike('slug', `%"${langKey}":"${slug}"%`)
+    .eq('is_published', 1)
     .maybeSingle()
 
   if (!talentRow) return { talent: null, occasions: [], addons: [] }
 
   const t = talentRow as Row
+  const talentId = Number(t.id)
 
-  const [occasionsRes] = await Promise.allSettled([
-    supabase.from('occasions').select('id, name').order('id'),
+  const [userMap, pricesRes, addonLinksRes, occasionsRes] = await Promise.all([
+    fetchUserMap([Number(t.user_id)]),
+
+    supabase
+      .from('talents_prices')
+      .select('id, talent_price_type_id, order_type, price, delivery_days')
+      .eq('talent_id', talentId),
+
+    // talent_addons = 1-to-many from talents; addon_id may vary — using * for safety
+    supabase
+      .from('talent_addons')
+      .select('*')
+      .eq('talent_id', talentId),
+
+    supabase
+      .from('occasions')
+      .select('id, name')
+      .order('id'),
   ])
 
-  const occasions: Occasion[] =
-    occasionsRes.status === 'fulfilled' && !occasionsRes.value.error
-      ? (occasionsRes.value.data ?? []).map((o: Row) => ({
-          id:      Number(o.id),
-          name:    j(o.name, langKey),
-          name_ar: j(o.name, 'ar') || undefined,
-        }))
-      : []
+  const prices: TalentPrice[] = (pricesRes.data ?? []).map(p => ({
+    id:            Number((p as Row).id),
+    type:          Number((p as Row).talent_price_type_id),
+    price:         Number((p as Row).price),
+    currency:      'USD',
+    delivery_days: (p as Row).delivery_days != null ? Number((p as Row).delivery_days) : undefined,
+  }))
 
-  const addons = Array.isArray(t.talent_addons)
-    ? (t.talent_addons as Row[])
-        .filter(ta => ta.is_active)
-        .map(ta => {
-          const a = (ta.addons ?? {}) as Row
-          return {
-            id:          Number(ta.id),
-            price:       Number(ta.price),
-            name:        j(a.name, langKey),
-            name_ar:     j(a.name, 'ar') || undefined,
-            description: j(a.description, langKey) || undefined,
-            order_type:  String(a.order_type ?? ''),
-          }
-        })
-    : []
+  // Filter active addon links (is_active may be smallint 1 or boolean true)
+  const activeAddonLinks = (addonLinksRes.data ?? []).filter(ta => {
+    const ia = (ta as Row).is_active
+    return ia === 1 || ia === true
+  }) as Row[]
 
-  return { talent: xTalent(t, lang), occasions, addons }
+  // Fetch addon details if we have links
+  let addons: unknown[] = []
+  if (activeAddonLinks.length) {
+    // Try common column names for the addon FK: addon_id or addons_id
+    const addonIds = activeAddonLinks
+      .map(ta => Number(ta.addon_id ?? ta.addons_id))
+      .filter(Boolean)
+
+    const addonDetailMap: Record<number, Row> = {}
+    if (addonIds.length) {
+      const { data: addonDetails } = await supabase
+        .from('addons')
+        .select('id, name, description, order_type')
+        .in('id', addonIds)
+      for (const a of addonDetails ?? []) {
+        addonDetailMap[Number((a as Row).id)] = a as Row
+      }
+    }
+
+    addons = activeAddonLinks.map(ta => {
+      const addonDetail = addonDetailMap[Number(ta.addon_id ?? ta.addons_id)] ?? {}
+      return {
+        id:          Number(ta.id),
+        price:       Number(ta.price),
+        name:        j(addonDetail.name, langKey),
+        name_ar:     j(addonDetail.name, 'ar') || undefined,
+        description: j(addonDetail.description, langKey) || undefined,
+        order_type:  String(addonDetail.order_type ?? ''),
+      }
+    })
+  }
+
+  const occasions: Occasion[] = (occasionsRes.data ?? []).map((o: Row) => ({
+    id:      Number(o.id),
+    name:    j(o.name, langKey),
+    name_ar: j(o.name, 'ar') || undefined,
+  }))
+
+  return {
+    talent: xTalent(t, lang, userMap, { prices }),
+    occasions,
+    addons,
+  }
 }
 
 export async function getTalentArticle(lang: string, slug: string, title: string) {
@@ -292,7 +412,7 @@ export async function getTalentArticle(lang: string, slug: string, title: string
   const { data: talentRow } = await supabase
     .from('talents')
     .select('id')
-    .filter(`slug->>${langKey}`, 'eq', slug)
+    .ilike('slug', `%"${langKey}":"${slug}"%`)
     .maybeSingle()
 
   if (!talentRow) return { article: null }
@@ -302,7 +422,7 @@ export async function getTalentArticle(lang: string, slug: string, title: string
     .select('id, title, slug, content, image, created_at')
     .eq('talent_id', (talentRow as Row).id)
     .eq('slug', title)
-    .eq('is_published', true)
+    .eq('is_published', 1)
     .maybeSingle()
 
   if (error || !data) return { article: null }
@@ -315,7 +435,7 @@ export async function getTalentFilmography(slug: string) {
     const { data: talentRow } = await supabase
       .from('talents')
       .select('id')
-      .filter('slug->>en', 'eq', slug)
+      .ilike('slug', `%"en":"${slug}"%`)
       .maybeSingle()
 
     if (!talentRow) return { filmography: [] }
@@ -340,7 +460,7 @@ export async function getTalentSpot(lang: string, slug: string, type: string) {
     const { data: talentRow } = await supabase
       .from('talents')
       .select('id')
-      .filter(`slug->>${langKey}`, 'eq', slug)
+      .ilike('slug', `%"${langKey}":"${slug}"%`)
       .maybeSingle()
 
     if (!talentRow) return { spot: null }
@@ -365,7 +485,7 @@ export async function getTalentInsight(lang: string, slug: string, type: string)
     const { data: talentRow } = await supabase
       .from('talents')
       .select('id')
-      .filter(`slug->>${langKey}`, 'eq', slug)
+      .ilike('slug', `%"${langKey}":"${slug}"%`)
       .maybeSingle()
 
     if (!talentRow) return { insights: [] }
@@ -386,8 +506,8 @@ export async function getTalentInsight(lang: string, slug: string, type: string)
 export async function getLatestArticles() {
   const { data, error } = await supabase
     .from('articles')
-    .select('id, title, slug, content, image, created_at, talents(id, slug, image, users(name))')
-    .eq('is_published', true)
+    .select('id, title, slug, content, image, created_at')
+    .eq('is_published', 1)
     .order('created_at', { ascending: false })
     .limit(10)
 
@@ -395,7 +515,7 @@ export async function getLatestArticles() {
   return (data ?? []).map(r => xArticle(r as Row))
 }
 
-// ─── Categories ──────────────────────────────────────────────────────────────
+// ─── Categories ───────────────────────────────────────────────────────────────
 
 export async function getCategories() {
   const { data, error } = await supabase
@@ -419,29 +539,36 @@ export async function getCategory(slug: string) {
 
   const category = xCategory(catRow as Row)
 
-  // Get talent IDs that belong to this category
+  // Fetch talent IDs in this category via the junction table
+  // NOTE: If talents_category uses a different column name than talent_id,
+  //       run: SELECT column_name FROM information_schema.columns WHERE table_name='talents_category'
+  //       and update the .select() and .eq() below accordingly.
   const { data: links } = await supabase
     .from('talents_category')
     .select('talent_id')
     .eq('category_id', category.id)
 
-  const ids = (links ?? []).map(r => (r as Row).talent_id as number)
+  const ids = (links ?? [])
+    .map(r => (r as Row).talent_id as number)
+    .filter(Boolean)
   if (!ids.length) return { category, talents: [] }
 
   const { data: talentRows } = await supabase
     .from('talents')
     .select(TALENT_SELECT)
     .in('id', ids)
-    .eq('is_published', true)
-    .eq('is_active', true)
+    .eq('is_published', 1)
+    .eq('is_active', 1)
     .order('id', { ascending: false })
 
-  const talents = (talentRows ?? []).map(r => xTalent(r as Row))
+  const rows = (talentRows ?? []) as Row[]
+  const userMap = await userMapFromTalents(rows)
+  const talents = rows.map(r => xTalent(r, 'en', userMap))
 
   return { category: { ...category, talents_count: talents.length }, talents }
 }
 
-// ─── Pages ───────────────────────────────────────────────────────────────────
+// ─── Pages ────────────────────────────────────────────────────────────────────
 
 export async function getPage(slug: string): Promise<Page | null> {
   const { data, error } = await supabase
@@ -463,19 +590,34 @@ export async function getPage(slug: string): Promise<Page | null> {
   }
 }
 
-// ─── Video ───────────────────────────────────────────────────────────────────
+// ─── Video ────────────────────────────────────────────────────────────────────
 
 export async function getVideoPreview(code: string) {
   const { data, error } = await supabase
     .from('videos')
-    .select('id, code, url, thumbnail, is_active, created_at, talents(id, slug, image, users(name))')
+    .select('id, code, url, thumbnail, is_active, created_at, talent_id')
     .eq('code', code)
-    .eq('is_active', true)
+    .eq('is_active', 1)
     .maybeSingle()
 
   if (error || !data) return { video: null }
 
   const v = data as Row
+
+  // Fetch associated talent separately (no FK join available)
+  let talent: Talent | undefined
+  if (v.talent_id) {
+    const { data: tRow } = await supabase
+      .from('talents')
+      .select(TALENT_SELECT)
+      .eq('id', Number(v.talent_id))
+      .maybeSingle()
+    if (tRow) {
+      const userMap = await fetchUserMap([Number((tRow as Row).user_id)])
+      talent = xTalent(tRow as Row, 'en', userMap)
+    }
+  }
+
   return {
     video: {
       id:         Number(v.id),
@@ -484,12 +626,12 @@ export async function getVideoPreview(code: string) {
       thumbnail:  (v.thumbnail as string) ?? '',
       is_public:  true,
       created_at: String(v.created_at ?? ''),
-      talent:     v.talents ? xTalent(v.talents as Row) : undefined,
+      talent,
     },
   }
 }
 
-// ─── Onboarding ──────────────────────────────────────────────────────────────
+// ─── Onboarding ───────────────────────────────────────────────────────────────
 
 export async function getOnboardingData() {
   const [catRes, occRes] = await Promise.allSettled([
