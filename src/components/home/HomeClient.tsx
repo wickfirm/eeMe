@@ -4,20 +4,19 @@ import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import TalentCard from '@/components/talent/TalentCard'
 import NewsletterForm from '@/components/home/NewsletterForm'
-import type { Talent, TalentArticle } from '@/lib/types'
+import type { HomeData, Talent, TalentArticle } from '@/lib/types'
 import { STORAGE_URL } from '@/lib/types'
 
 interface Props {
-  data: Record<string, unknown>
+  data: HomeData
 }
 
 export default function HomeClient({ data }: Props) {
   const { t } = useTranslation()
 
-  const talents = (data?.talents_priority as Talent[]) || []
-  const articles = (data?.articles as TalentArticle[]) || []
-  const heroVideo = (data?.hero_video as { url?: string; code?: string }) || null
-  const page = (data?.page as { title?: string; description?: string; video_url?: string }) || null
+  const talents: Talent[] = data?.talents ?? []
+  const articles: TalentArticle[] = data?.articles ?? []
+  const page = data?.page ?? null
 
   return (
     <div style={{ backgroundColor: 'var(--color-bg)' }}>
@@ -26,20 +25,11 @@ export default function HomeClient({ data }: Props) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-          {/* Hero Video */}
+          {/* Hero placeholder */}
           <div className="relative rounded-xl overflow-hidden aspect-video" style={{ backgroundColor: 'var(--color-bg-card)' }}>
-            {page?.video_url || heroVideo?.url ? (
-              <video
-                src={page?.video_url || heroVideo?.url}
-                className="w-full h-full object-cover"
-                controls
-                playsInline
-              />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="spinner" />
-              </div>
-            )}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="spinner" />
+            </div>
           </div>
 
           {/* Hero CTA */}
@@ -48,7 +38,7 @@ export default function HomeClient({ data }: Props) {
               {page?.title || t('YOUR DIGITAL HOME', 'YOUR DIGITAL HOME')}
             </h1>
             <p className="text-base mb-8 leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-              {page?.description || t('hero_description', 'The tech platform that finally allows you to control and own your content.')}
+              {page?.body || t('hero_description', 'The tech platform that finally allows you to control and own your content.')}
             </p>
             <NewsletterForm />
           </div>
