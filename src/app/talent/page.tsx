@@ -24,25 +24,12 @@ export default async function TalentPage({ searchParams }: Props) {
       getCategories(),
     ])
 
-    // Handle both flat array and paginated { data, meta } response
-    const tr = talentRes as Record<string, unknown>
-    if (Array.isArray(tr)) {
-      talents = tr as Talent[]
-      totalCount = talents.length
-    } else if (Array.isArray((tr as Record<string, unknown>)?.data)) {
-      talents = (tr as Record<string, unknown>).data as Talent[]
-      const meta = (tr as Record<string, unknown>).meta as Record<string, number> | undefined
-      currentPage = meta?.current_page ?? page
-      totalPages = meta?.last_page ?? 1
-      totalCount = meta?.total ?? talents.length
-    }
+    talents = talentRes.data
+    currentPage = talentRes.meta.current_page
+    totalPages = talentRes.meta.last_page
+    totalCount = talentRes.meta.total
 
-    const cr = catRes as Record<string, unknown>
-    if (Array.isArray(cr)) {
-      categories = cr as Category[]
-    } else if (Array.isArray((cr as Record<string, unknown>)?.data)) {
-      categories = (cr as Record<string, unknown>).data as Category[]
-    }
+    categories = catRes
   } catch {
     // API down — render empty shell
   }

@@ -12,12 +12,11 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const res = (await getCategory(params.slug)) as Record<string, unknown>
-    const cat = ((res?.category ?? res) as Category) || null
-    if (!cat?.name) return {}
+    const { category } = await getCategory(params.slug)
+    if (!category?.name) return {}
     return {
-      title: `${cat.name} Talents | eeMe`,
-      description: `Browse ${cat.name} talents on eeMe`,
+      title: `${category.name} Talents | eeMe`,
+      description: `Browse ${category.name} talents on eeMe`,
     }
   } catch {
     return {}
@@ -35,23 +34,11 @@ export default async function CategoryPage({ params }: Props) {
       getCategories(),
     ])
 
-    const cr = catRes as Record<string, unknown>
-    category = ((cr?.category ?? cr) as Category) || null
+    category = catRes.category
     if (!category?.id) return notFound()
 
-    // Talents are usually nested inside the category response
-    if (Array.isArray(cr?.talents)) {
-      talents = cr.talents as Talent[]
-    } else if (category && Array.isArray((category as unknown as Record<string, unknown>).talents)) {
-      talents = (category as unknown as Record<string, unknown>).talents as Talent[]
-    }
-
-    const acr = allCatsRes as Record<string, unknown>
-    if (Array.isArray(acr)) {
-      categories = acr as Category[]
-    } else if (Array.isArray(acr?.data)) {
-      categories = acr.data as Category[]
-    }
+    talents = catRes.talents
+    categories = allCatsRes
   } catch {
     return notFound()
   }

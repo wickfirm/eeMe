@@ -626,8 +626,8 @@ export async function getVideoPreview(code: string) {
       thumbnail:  (v.thumbnail as string) ?? '',
       is_public:  true,
       created_at: String(v.created_at ?? ''),
-      talent,
     },
+    talent: talent ?? null,
   }
 }
 

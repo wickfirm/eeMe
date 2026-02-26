@@ -13,8 +13,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const res = (await getTalent('en', params.slug)) as Record<string, unknown>
-    const talent = ((res?.talent ?? res) as Talent) || null
+    const { talent } = await getTalent('en', params.slug)
     if (!talent?.name) return {}
     return {
       title: `${talent.name} | eeMe`,
@@ -33,8 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function TalentProfilePage({ params }: Props) {
   let talent: Talent | null = null
   try {
-    const res = (await getTalent('en', params.slug)) as Record<string, unknown>
-    talent = ((res?.talent ?? res) as Talent) || null
+    const res = await getTalent('en', params.slug)
+    talent = res.talent
     if (!talent?.id) return notFound()
   } catch {
     return notFound()

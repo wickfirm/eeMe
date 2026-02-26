@@ -16,12 +16,10 @@ export default async function BookingPage({ params, searchParams }: Props) {
   let occasions: Occasion[] = []
 
   try {
-    const res = (await getTalentBookData('en', params.slug)) as Record<string, unknown>
-    talent = ((res?.talent ?? res) as Talent) || null
+    const res = await getTalentBookData('en', params.slug)
+    talent = res.talent
     if (!talent?.id) return notFound()
-    if (Array.isArray(res?.occasions)) {
-      occasions = res.occasions as Occasion[]
-    }
+    occasions = res.occasions
   } catch {
     return notFound()
   }
