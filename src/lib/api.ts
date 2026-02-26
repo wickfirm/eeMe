@@ -36,7 +36,7 @@ const TALENT_SELECT =
 
 // ─── Batch-fetch users by IDs → { [userId]: userRow } ────────────────────────
 async function fetchUserMap(ids: number[]): Promise<Record<number, Row>> {
-  const uniq = [...new Set(ids.filter(Boolean))]
+  const uniq = Array.from(new Set(ids.filter(Boolean)))
   if (!uniq.length) return {}
   const { data } = await supabase.from('users').select('id, name').in('id', uniq)
   const map: Record<number, Row> = {}
