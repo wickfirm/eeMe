@@ -28,6 +28,19 @@ function j(field: unknown, lang = 'en'): string {
 
 type Row = Record<string, unknown>
 
+// ─── Safe data extractors for Promise.allSettled results ──────────────────────
+// Supabase allSettled results type .data as T | GenericStringError[] — must go
+// through unknown to avoid TypeScript's overlap check.
+type SBResult = PromiseSettledResult<{ data: unknown; error: unknown }>
+function sd(res: SBResult): Row[] {
+  if (res.status !== 'fulfilled' || res.value.error) return []
+  return (res.value.data as unknown as Row[]) ?? []
+}
+function sdOne(res: SBResult): Row | null {
+  if (res.status !== 'fulfilled' || res.value.error) return null
+  return (res.value.data as unknown as Row) ?? null
+}
+
 // ─── Flat SELECT — no FK joins (FK constraints absent in this schema) ─────────
 // is_published / is_active are smallint (1/0), NOT boolean
 const TALENT_SELECT =
@@ -70,36 +83,25 @@ async function fetchTalentJunctions(talentId: number) {
       .eq('talent_id', talentId),
   ])
 
-  const social: TalentSocial[] =
-    socialRes.status === 'fulfilled' && !socialRes.value.error
-      ? (socialRes.value.data ?? []).map(s => ({
-          id:              Number((s as Row).id),
-          social_media_id: Number((s as Row).social_media_id),
-          followers:       (s as Row).followers != null ? Number((s as Row).followers) : undefined,
-          url:             ((s as Row).url as string) || undefined,
-        }))
-      : []
+  const social: TalentSocial[] = sd(socialRes).map(s => ({
+    id:              Number(s.id),
+    social_media_id: Number(s.social_media_id),
+    followers:       s.followers != null ? Number(s.followers) : undefined,
+    url:             (s.url as string) || undefined,
+  }))
 
-  const prices: TalentPrice[] =
-    pricesRes.status === 'fulfilled' && !pricesRes.value.error
-      ? (pricesRes.value.data ?? []).map(p => ({
-          id:            Number((p as Row).id),
-          type:          Number((p as Row).talent_price_type_id),
-          price:         Number((p as Row).price),
-          currency:      'USD',
-          delivery_days: (p as Row).delivery_days != null ? Number((p as Row).delivery_days) : undefined,
-        }))
-      : []
+  const prices: TalentPrice[] = sd(pricesRes).map(p => ({
+    id:            Number(p.id),
+    type:          Number(p.talent_price_type_id),
+    price:         Number(p.price),
+    currency:      'USD',
+    delivery_days: p.delivery_days != null ? Number(p.delivery_days) : undefined,
+  }))
 
   let categories: Category[] = []
-  if (
-    catLinksRes.status === 'fulfilled' &&
-    !catLinksRes.value.error &&
-    catLinksRes.value.data?.length
-  ) {
-    const catIds = (catLinksRes.value.data as Row[])
-      .map(l => Number(l.category_id))
-      .filter(Boolean)
+  const catLinks = sd(catLinksRes)
+  if (catLinks.length) {
+    const catIds = catLinks.map(l => Number(l.category_id)).filter(Boolean)
     if (catIds.length) {
       const { data: cats } = await supabase
         .from('categories')
@@ -132,7 +134,6 @@ function xTalent(
   extra?: { social?: TalentSocial[]; prices?: TalentPrice[]; categories?: Category[] },
 ): Talent {
   const userId = Number(row.user_id)
-  // Accept user from batch map, or from an embedded row (future FK), or fall back to empty
   const user: Row = userMap?.[userId] ?? ((row.users as Row) ?? {})
 
   return {
@@ -198,31 +199,17 @@ export async function getHomeData(): Promise<HomeData> {
       .maybeSingle(),
   ])
 
-  // Enrich talent rows with user names via a single batch query
-  const talentRows: Row[] =
-    talentsRes.status === 'fulfilled' && !talentsRes.value.error
-      ? (talentsRes.value.data ?? []) as Row[]
-      : []
+  const talentRows = sd(talentsRes)
   const userMap = await userMapFromTalents(talentRows)
   const talents: Talent[] = talentRows.map(r => xTalent(r, 'en', userMap))
 
-  const categories: Category[] =
-    catsRes.status === 'fulfilled' && !catsRes.value.error
-      ? (catsRes.value.data ?? []).map(r => xCategory(r as Row))
-      : []
+  const categories: Category[] = sd(catsRes).map(r => xCategory(r))
 
-  const articles: TalentArticle[] =
-    articlesRes.status === 'fulfilled' && !articlesRes.value.error
-      ? (articlesRes.value.data ?? []).map(r => xArticle(r as Row))
-      : []
+  const articles: TalentArticle[] = sd(articlesRes).map(r => xArticle(r))
 
   let page: Page | undefined
-  if (
-    pageRes.status === 'fulfilled' &&
-    !pageRes.value.error &&
-    pageRes.value.data
-  ) {
-    const p = pageRes.value.data as Row
+  const p = sdOne(pageRes)
+  if (p) {
     page = {
       id:       Number(p.id),
       slug:     String(p.slug ?? 'home'),
@@ -359,7 +346,7 @@ export async function getTalentBookData(lang: string, slug: string) {
   const activeAddonLinks = (addonLinksRes.data ?? []).filter(ta => {
     const ia = (ta as Row).is_active
     return ia === 1 || ia === true
-  }) as Row[]
+  }) as unknown as Row[]
 
   // Fetch addon details if we have links
   let addons: unknown[] = []
@@ -639,19 +626,13 @@ export async function getOnboardingData() {
     supabase.from('occasions').select('id, name').order('id'),
   ])
 
-  const categories: Category[] =
-    catRes.status === 'fulfilled' && !catRes.value.error
-      ? (catRes.value.data ?? []).map(r => xCategory(r as Row))
-      : []
+  const categories: Category[] = sd(catRes).map(r => xCategory(r))
 
-  const occasions: Occasion[] =
-    occRes.status === 'fulfilled' && !occRes.value.error
-      ? (occRes.value.data ?? []).map((o: Row) => ({
-          id:      Number(o.id),
-          name:    j(o.name, 'en'),
-          name_ar: j(o.name, 'ar') || undefined,
-        }))
-      : []
+  const occasions: Occasion[] = sd(occRes).map(o => ({
+    id:      Number(o.id),
+    name:    j(o.name, 'en'),
+    name_ar: j(o.name, 'ar') || undefined,
+  }))
 
   return { categories, occasions }
 }
