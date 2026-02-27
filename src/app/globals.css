@@ -3,13 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #211f20;
-  --color-bg-card: #1a1818;
-  --color-primary: #3bbab1;
-  --color-primary-hover: #2ea39b;
+  --color-bg: #000000;
+  --color-bg-card: #0d0d0d;
+  --color-bg-nav: #111111;
+  --color-primary: #00e5c3;
+  --color-primary-hover: #00c9ab;
+  --color-purple: #7b2fbe;
   --color-text: #ffffff;
-  --color-text-muted: #9d9d9d;
-  --color-border: #333133;
+  --color-text-muted: #9ca3af;
+  --color-border: #1f1f1f;
 }
 
 * {
@@ -39,11 +41,11 @@ body {
   background: var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: #333;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
+  background: #555;
 }
 
 /* Links */
@@ -52,10 +54,9 @@ a {
   text-decoration: none;
 }
 
-/* Utility classes */
+/* Utility */
 .text-primary { color: var(--color-primary); }
 .bg-card { background-color: var(--color-bg-card); }
-.border-default { border-color: var(--color-border); }
 
 /* Loading spinner */
 .spinner {
@@ -66,16 +67,28 @@ a {
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
-
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* Video.js dark theme override */
-.video-js .vjs-big-play-button {
-  background-color: rgba(59, 186, 177, 0.8);
-  border-color: var(--color-primary);
+/* Category pill hover */
+.category-pill:hover {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
 }
-.video-js .vjs-big-play-button:hover {
-  background-color: var(--color-primary);
+
+/* Talent card hover */
+.talent-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Article hover */
+.article-link:hover h3,
+.article-link:hover h4 {
+  color: var(--color-primary);
+}
+
+/* Nav dropdown backdrop */
+.nav-dropdown-backdrop {
+  backdrop-filter: blur(12px);
 }

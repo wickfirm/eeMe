@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
@@ -8,10 +8,23 @@ import i18next from 'i18next'
 export default function Header() {
   const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [talentsOpen, setTalentsOpen] = useState(false)
   const [lang, setLang] = useState('en')
+  const talentsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setLang(i18next.language)
+  }, [])
+
+  // Close talents dropdown on outside click
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (talentsRef.current && !talentsRef.current.contains(e.target as Node)) {
+        setTalentsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
   }, [])
 
   const toggleLang = () => {
@@ -22,99 +35,189 @@ export default function Header() {
     document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr'
   }
 
-  return (
-    <header style={{ backgroundColor: 'var(--color-bg)', borderBottom: '1px solid var(--color-border)' }}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
+  const navLinkStyle: React.CSSProperties = {
+    color: '#ffffff',
+    fontSize: '0.9rem',
+    fontWeight: 500,
+    cursor: 'pointer',
+    background: 'none',
+    border: 'none',
+    padding: 0,
+    letterSpacing: '0.01em',
+  }
 
+  return (
+    <header style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#000000', padding: '10px 20px' }}>
+      {/* Pill nav */}
+      <div style={{
+        maxWidth: '1400px',
+        margin: '0 auto',
+        backgroundColor: '#111111',
+        borderRadius: '100px',
+        padding: '10px 28px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '16px',
+      }}>
         {/* Logo */}
-        <Link href="/" className="flex-shrink-0">
-          <img src="/assets/images/eeme-logo.svg" alt="eeMe" className="h-8 w-auto" />
+        <Link href="/" style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
+          <img
+            src="/assets/images/eeme-logo.svg"
+            alt="eeMe"
+            style={{ height: '30px', width: 'auto' }}
+          />
         </Link>
 
-        {/* Nav links */}
-        <div className="hidden md:flex items-center gap-8">
-          <div className="relative group">
+        {/* Desktop centre links */}
+        <nav className="hidden md:flex" style={{ alignItems: 'center', gap: '36px' }}>
+          <Link href="/about-eeme" style={navLinkStyle}>About Emee</Link>
+
+          {/* Talents dropdown */}
+          <div ref={talentsRef} style={{ position: 'relative' }}>
             <button
-              className="flex items-center gap-1 text-sm font-semibold tracking-wider uppercase"
-              style={{ color: 'var(--color-text)' }}
+              onClick={() => setTalentsOpen(v => !v)}
+              style={{ ...navLinkStyle, display: 'flex', alignItems: 'center', gap: '4px' }}
             >
-              {t('TALENTS', 'TALENTS')}
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              Talents
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                style={{ transition: 'transform 0.2s', transform: talentsOpen ? 'rotate(180deg)' : 'none' }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div
-              className="absolute top-full left-0 mt-2 w-48 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
-              style={{ backgroundColor: 'var(--color-bg-card)', border: '1px solid var(--color-border)' }}
-            >
-              <Link
-                href="/talent"
-                className="block px-4 py-3 text-sm hover:text-primary transition-colors"
-                style={{ color: 'var(--color-text)' }}
-              >
-                {t('All Talents', 'All Talents')}
-              </Link>
-            </div>
+            {talentsOpen && (
+              <div style={{
+                position: 'absolute',
+                top: 'calc(100% + 12px)',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                backgroundColor: '#1a1a1a',
+                border: '1px solid #2a2a2a',
+                borderRadius: '14px',
+                padding: '8px 0',
+                minWidth: '160px',
+                boxShadow: '0 16px 48px rgba(0,0,0,0.6)',
+              }}>
+                <Link
+                  href="/talent"
+                  onClick={() => setTalentsOpen(false)}
+                  style={{ display: 'block', padding: '10px 20px', color: '#fff', fontSize: '0.875rem', transition: 'color 0.15s' }}
+                >
+                  All Talents
+                </Link>
+              </div>
+            )}
           </div>
 
-          <Link
-            href="/about-eeme"
-            className="text-sm font-medium transition-colors hover:text-primary"
-            style={{ color: 'var(--color-text)' }}
-          >
-            {t('About eeMe', 'About eeMe')}
-          </Link>
-        </div>
+          <Link href="/#pricing" style={navLinkStyle}>Pricing</Link>
+          <Link href="/about-eeme" style={navLinkStyle}>Contact</Link>
+        </nav>
 
         {/* Right side */}
-        <div className="flex items-center gap-4 ml-auto">
-          {/* Search */}
-          <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full" style={{ backgroundColor: 'var(--color-bg-card)', border: '1px solid var(--color-border)' }}>
-            <svg className="w-4 h-4" style={{ color: 'var(--color-text-muted)' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <input
-              type="text"
-              placeholder={t('Looking for someone you love?', 'Looking for someone you love?') as string}
-              className="bg-transparent text-sm outline-none w-56"
-              style={{ color: 'var(--color-text)', '::placeholder': { color: 'var(--color-text-muted)' } } as React.CSSProperties}
-            />
-          </div>
-
-          {/* Language toggle */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          {/* Language */}
           <button
             onClick={toggleLang}
-            className="text-sm font-medium transition-colors hover:text-primary"
-            style={{ color: 'var(--color-text-muted)' }}
+            className="hidden md:block"
+            style={{ ...navLinkStyle, color: '#9ca3af', fontSize: '0.8rem' }}
           >
             {lang === 'en' ? 'العربية' : 'English'}
           </button>
 
-          {/* Mobile menu button */}
+          {/* Sign Up */}
+          <Link
+            href="/on-boarding"
+            className="hidden md:inline-block"
+            style={{
+              backgroundColor: '#00e5c3',
+              color: '#000000',
+              fontWeight: 700,
+              padding: '8px 26px',
+              borderRadius: '100px',
+              fontSize: '0.875rem',
+              letterSpacing: '0.02em',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Sign Up
+          </Link>
+
+          {/* Search */}
+          <button className="hidden md:flex" style={{ ...navLinkStyle, color: '#fff' }} aria-label="Search">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+
+          {/* Hamburger */}
           <button
             className="md:hidden"
-            onClick={() => setMenuOpen(!menuOpen)}
-            style={{ color: 'var(--color-text)' }}
+            onClick={() => setMenuOpen(v => !v)}
+            style={{ ...navLinkStyle, color: '#fff' }}
+            aria-label="Menu"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               {menuOpen
-                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               }
             </svg>
           </button>
         </div>
-      </nav>
+      </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden px-4 pb-4 space-y-2" style={{ backgroundColor: 'var(--color-bg)', borderTop: '1px solid var(--color-border)' }}>
-          <Link href="/talent" className="block py-2 text-sm" style={{ color: 'var(--color-text)' }} onClick={() => setMenuOpen(false)}>
-            {t('All Talents', 'All Talents')}
-          </Link>
-          <Link href="/about-eeme" className="block py-2 text-sm" style={{ color: 'var(--color-text)' }} onClick={() => setMenuOpen(false)}>
-            {t('About eeMe', 'About eeMe')}
-          </Link>
+        <div style={{
+          maxWidth: '1400px',
+          margin: '8px auto 0',
+          backgroundColor: '#111111',
+          borderRadius: '20px',
+          padding: '8px 0',
+          border: '1px solid #1f1f1f',
+        }}>
+          {[
+            { href: '/talent', label: 'All Talents' },
+            { href: '/about-eeme', label: 'About Emee' },
+            { href: '/#pricing', label: 'Pricing' },
+            { href: '/about-eeme', label: 'Contact' },
+          ].map(({ href, label }) => (
+            <Link
+              key={href + label}
+              href={href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'block',
+                padding: '14px 24px',
+                color: '#ffffff',
+                fontSize: '0.95rem',
+                borderBottom: '1px solid #1a1a1a',
+              }}
+            >
+              {label}
+            </Link>
+          ))}
+          <div style={{ padding: '16px 24px', display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <Link
+              href="/on-boarding"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                flex: 1,
+                textAlign: 'center',
+                backgroundColor: '#00e5c3',
+                color: '#000',
+                fontWeight: 700,
+                padding: '12px',
+                borderRadius: '100px',
+                fontSize: '0.9rem',
+              }}
+            >
+              Sign Up
+            </Link>
+            <button onClick={toggleLang} style={{ color: '#9ca3af', fontSize: '0.85rem', background: 'none', border: 'none', cursor: 'pointer' }}>
+              {lang === 'en' ? 'العربية' : 'English'}
+            </button>
+          </div>
         </div>
       )}
     </header>
