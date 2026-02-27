@@ -170,6 +170,7 @@ export interface HomeData {
   articles?: TalentArticle[]
   page?: Page
   agency?: Agency | null
+  _debug?: string
 }
 
 // ─── Constants ───────────────────────────────────────────────────────────────

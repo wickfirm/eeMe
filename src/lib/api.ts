@@ -146,13 +146,23 @@ function xArticle(row: Row, lang = 'en'): TalentArticle {
 
 // ─── Home ─────────────────────────────────────────────────────────────────────
 
-export async function getHomeData(): Promise<HomeData> {
+export async function getHomeData(): Promise<HomeData & { _debug?: string }> {
   const [talentsRes, catsRes, articlesRes, pageRes] = await Promise.allSettled([
     supabase.from('talents').select(TALENT_SELECT).eq('is_published', 1).eq('is_active', 1).order('id', { ascending: false }).limit(12),
     supabase.from('categories').select('id, name, slug, image').is('parent_id', null).order('id'),
     supabase.from('articles').select('id, title, slug, content, image, created_at').eq('is_published', 1).order('created_at', { ascending: false }).limit(6),
     supabase.from('pages').select('id, slug, title, content').eq('slug', 'home').maybeSingle(),
   ])
+
+  // Collect any errors for on-page diagnostics
+  const errors: string[] = []
+  if (talentsRes.status === 'rejected')  errors.push(`talents: ${String(talentsRes.reason)}`)
+  else if (talentsRes.value.error)       errors.push(`talents: ${JSON.stringify(talentsRes.value.error)}`)
+  if (catsRes.status === 'rejected')     errors.push(`categories: ${String(catsRes.reason)}`)
+  else if (catsRes.value.error)          errors.push(`categories: ${JSON.stringify(catsRes.value.error)}`)
+
+  console.error('[getHomeData] SUPABASE_URL:', process.env.NEXT_PUBLIC_SUPABASE_URL ?? 'NOT SET')
+  if (errors.length) console.error('[getHomeData] errors:', errors)
 
   const talentRows = sd(talentsRes)
   const userMap    = await userMapFromTalents(talentRows)
@@ -172,6 +182,7 @@ export async function getHomeData(): Promise<HomeData> {
     categories: sd(catsRes).map(xCategory),
     articles:   sd(articlesRes).map(r => xArticle(r)),
     page,
+    _debug: errors.length ? errors.join(' | ') : undefined,
   }
 }
 
@@ -302,20 +313,15 @@ export async function getTalentFilmography(slug: string) {
   try {
     const { data: talentRow } = await supabase.from('talents').select('id').ilike('slug', `%"en":"${slug}"%`).maybeSingle()
     if (!talentRow) return { filmography: [] }
-    const { data, error } = await supabase.from('filmography').select('*').eq('talent_id', toRow(talentRow).id).order('year', { ascending: false })
+    const { data, error } = await supabase.from('talent_filmography').select('*').eq('talent_id', toRow(talentRow).id).order('year', { ascending: false })
     if (error) return { filmography: [] }
     return { filmography: toRows(data) }
   } catch { return { filmography: [] } }
 }
 
-export async function getTalentSpot(lang: string, slug: string, type: string) {
-  try {
-    const langKey = lang === 'ar' ? 'ar' : 'en'
-    const { data: talentRow } = await supabase.from('talents').select('id').ilike('slug', `%"${langKey}":"${slug}"%`).maybeSingle()
-    if (!talentRow) return { spot: null }
-    const { data } = await supabase.from('talent_spots').select('*').eq('talent_id', toRow(talentRow).id).eq('type', type).maybeSingle()
-    return { spot: data ? toRow(data) : null }
-  } catch { return { spot: null } }
+export async function getTalentSpot(_lang: string, _slug: string, _type: string) {
+  // talent_spots table does not exist in this schema
+  return { spot: null }
 }
 
 export async function getTalentInsight(lang: string, slug: string, type: string) {
