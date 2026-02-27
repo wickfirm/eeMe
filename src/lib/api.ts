@@ -133,12 +133,14 @@ function xTalent(
 }
 
 function xArticle(row: Row, lang = 'en', talent?: Talent): TalentArticle {
+  // 'content' and 'body' both tried — different eeMe DB versions use different names
+  const bodyRaw = row.content ?? row.body
   return {
     id:         Number(row.id),
     title:      j(row.title, lang),
     title_ar:   j(row.title, 'ar') || undefined,
     slug:       j(row.slug, lang) || j(row.slug, 'en') || String(row.slug ?? ''),
-    body:       j(row.content, lang) || undefined,
+    body:       j(bodyRaw, lang) || undefined,
     image:      (row.image as string) || undefined,
     created_at: String(row.created_at ?? ''),
     talent,
@@ -151,7 +153,7 @@ export async function getHomeData(): Promise<HomeData> {
   const [talentsRes, catsRes, articlesRes, pageRes] = await Promise.allSettled([
     supabase.from('talents').select(TALENT_SELECT).eq('is_published', 1).eq('is_active', 1).order('id', { ascending: false }).limit(12),
     supabase.from('categories').select('id, name, slug').is('parent_id', null).order('id'),
-    supabase.from('articles').select('id, title, slug, content, image, created_at, talent_id').eq('is_published', 1).order('created_at', { ascending: false }).limit(18),
+    supabase.from('articles').select('id, title, slug, content, body, image, created_at, talent_id').not('is_published', 'is', null).not('is_published', 'eq', false).not('is_published', 'eq', 0).order('created_at', { ascending: false }).limit(18),
     supabase.from('pages').select('id, slug, title, content').eq('slug', 'home').maybeSingle(),
   ])
 
@@ -338,8 +340,9 @@ export async function getTalentInsight(lang: string, slug: string, type: string)
 
 export async function getLatestArticles() {
   const { data, error } = await supabase
-    .from('articles').select('id, title, slug, content, image, created_at')
-    .eq('is_published', 1).order('created_at', { ascending: false }).limit(10)
+    .from('articles').select('id, title, slug, content, body, image, created_at')
+    .not('is_published', 'is', null).not('is_published', 'eq', false).not('is_published', 'eq', 0)
+    .order('created_at', { ascending: false }).limit(10)
   if (error) return []
   return toRows(data).map(r => xArticle(r))
 }
