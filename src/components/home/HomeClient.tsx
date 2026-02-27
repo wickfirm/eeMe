@@ -6,6 +6,10 @@ import { useTranslation } from 'react-i18next'
 import type { HomeData, Talent, TalentArticle, Category } from '@/lib/types'
 import { STORAGE_URL } from '@/lib/types'
 
+// ─── Constants ────────────────────────────────────────────────────────────────
+
+const CTA_GRADIENT = 'linear-gradient(90deg, #09ffb5 0%, #09fff5 42%, #6995ff 79.5%, #8728ff 100%)'
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function imgUrl(path: string | undefined): string | null {
@@ -67,11 +71,11 @@ function TalentPortraitCard({ talent }: { talent: Talent }) {
           padding: '40px 16px 16px',
           background: 'linear-gradient(to top, rgba(90,20,160,0.96) 0%, rgba(90,20,160,0.75) 45%, transparent 100%)',
         }}>
-          <p style={{ color: '#ffffff', fontWeight: 700, fontSize: '0.95rem', margin: 0, textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.2 }}>
+          <p style={{ color: '#dde7ff', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '0.95rem', margin: 0, textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.2 }}>
             {name}
           </p>
           {catName && (
-            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.8rem', margin: '4px 0 0' }}>
+            <p style={{ color: 'rgba(221,231,255,0.75)', fontFamily: 'var(--font-body)', fontSize: '0.8rem', margin: '4px 0 0' }}>
               {catName}
             </p>
           )}
@@ -93,25 +97,25 @@ function FeaturedArticle({ article }: { article: TalentArticle }) {
 
   return (
     <Link href={href} className="article-link" style={{ display: 'block' }}>
-      {img && (
-        <div style={{ borderRadius: '16px', overflow: 'hidden', marginBottom: '20px', height: '280px' }}>
+      <div style={{ borderRadius: '36px', overflow: 'hidden', marginBottom: '20px', height: '280px', backgroundColor: '#292929' }}>
+        {img && (
           <img src={img} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s' }} />
-        </div>
-      )}
+        )}
+      </div>
       {article.talent && (
-        <p style={{ color: '#00e5c3', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>
+        <p style={{ color: '#09ffb5', fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>
           {article.talent.name}
         </p>
       )}
-      <h3 style={{ color: '#ffffff', fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.25, marginBottom: '14px' }}>
+      <h3 style={{ color: '#dde7ff', fontFamily: 'var(--font-ui)', fontSize: '2rem', fontWeight: 700, lineHeight: 1.25, marginBottom: '14px' }}>
         {truncate(title, 100)}
       </h3>
       {body && (
-        <p style={{ color: '#9ca3af', fontSize: '0.875rem', lineHeight: 1.65, marginBottom: '18px' }}>
+        <p style={{ color: '#9ca3af', fontFamily: 'var(--font-ui)', fontSize: '0.875rem', lineHeight: 1.65, marginBottom: '18px' }}>
           {truncate(body, 220)}
         </p>
       )}
-      <span style={{ color: '#ffffff', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 500 }}>
+      <span style={{ color: '#dde7ff', fontFamily: 'var(--font-ui)', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 400 }}>
         Read more
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -130,16 +134,16 @@ function SidebarArticle({ article }: { article: TalentArticle }) {
 
   return (
     <Link href={href} className="article-link" style={{ display: 'flex', gap: '16px', alignItems: 'flex-start', marginBottom: '28px' }}>
-      {img && (
-        <div style={{ flexShrink: 0, width: '96px', height: '80px', borderRadius: '12px', overflow: 'hidden' }}>
+      <div style={{ flexShrink: 0, width: '96px', height: '80px', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#292929' }}>
+        {img && (
           <img src={img} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-        </div>
-      )}
+        )}
+      </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <h4 style={{ color: '#ffffff', fontSize: '0.875rem', fontWeight: 600, lineHeight: 1.35, marginBottom: '10px' }}>
+        <h4 style={{ color: '#dde7ff', fontFamily: 'var(--font-ui)', fontSize: '0.875rem', fontWeight: 600, lineHeight: 1.35, marginBottom: '10px' }}>
           {truncate(title, 80)}
         </h4>
-        <span style={{ color: '#9ca3af', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+        <span style={{ color: '#dde7ff', fontFamily: 'var(--font-ui)', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
           Read more
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -160,25 +164,25 @@ function GridArticle({ article }: { article: TalentArticle }) {
 
   return (
     <Link href={href} className="article-link" style={{ display: 'block' }}>
-      {img && (
-        <div style={{ borderRadius: '16px', overflow: 'hidden', marginBottom: '16px', height: '200px' }}>
+      <div style={{ borderRadius: '36px', overflow: 'hidden', marginBottom: '16px', height: '200px', backgroundColor: '#292929' }}>
+        {img && (
           <img src={img} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s' }} />
-        </div>
-      )}
+        )}
+      </div>
       {article.talent && (
-        <p style={{ color: '#00e5c3', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>
+        <p style={{ color: '#09ffb5', fontFamily: 'var(--font-body)', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>
           {article.talent.name}
         </p>
       )}
-      <h4 style={{ color: '#ffffff', fontSize: '1rem', fontWeight: 700, lineHeight: 1.3, marginBottom: '8px' }}>
+      <h4 style={{ color: '#dde7ff', fontFamily: 'var(--font-ui)', fontSize: '1rem', fontWeight: 700, lineHeight: 1.3, marginBottom: '8px' }}>
         {truncate(title, 80)}
       </h4>
       {body && (
-        <p style={{ color: '#9ca3af', fontSize: '0.8rem', lineHeight: 1.55, marginBottom: '14px' }}>
+        <p style={{ color: '#9ca3af', fontFamily: 'var(--font-ui)', fontSize: '0.8rem', lineHeight: 1.55, marginBottom: '14px' }}>
           {truncate(body, 130)}
         </p>
       )}
-      <span style={{ color: '#ffffff', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '4px', fontWeight: 500 }}>
+      <span style={{ color: '#dde7ff', fontFamily: 'var(--font-ui)', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '4px', fontWeight: 400 }}>
         Read more
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -222,28 +226,32 @@ export default function HomeClient({ data }: Props) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '60px 24px 0',
+        padding: '80px 24px 0',
         textAlign: 'center',
         overflow: 'hidden',
       }}>
         <h1 style={{
-          fontSize: 'clamp(2.5rem, 7vw, 5.5rem)',
-          fontWeight: 900,
-          color: '#ffffff',
-          lineHeight: 1.1,
-          letterSpacing: '-0.02em',
+          fontFamily: 'var(--font-heading)',
+          fontSize: 'clamp(2.5rem, 7vw, 5.0625rem)',
+          fontWeight: 600,
+          color: '#dde7ff',
+          lineHeight: 1.05,
+          letterSpacing: '-0.01em',
           maxWidth: '900px',
           marginBottom: '28px',
+          textTransform: 'uppercase',
         }}>
           WHERE YOUR DIGITAL STORY BEGINS
         </h1>
 
         <p style={{
-          color: '#d1d5db',
-          fontSize: 'clamp(0.95rem, 2vw, 1.125rem)',
-          lineHeight: 1.7,
+          fontFamily: 'var(--font-body)',
+          color: '#dde7ff',
+          fontSize: 'clamp(1rem, 2.2vw, 1.25rem)',
+          lineHeight: 1.75,
           maxWidth: '680px',
           marginBottom: '56px',
+          fontWeight: 400,
         }}>
           eeMe offers a dynamic platform for creating and managing your digital profile.
           Take control of your online presence, showcase your identity, connect with others,
@@ -253,8 +261,8 @@ export default function HomeClient({ data }: Props) {
         {/* Hero video */}
         <div style={{
           width: '100%',
-          maxWidth: '960px',
-          borderRadius: '24px',
+          maxWidth: '1312px',
+          borderRadius: '64px',
           overflow: 'hidden',
           backgroundColor: '#1a0a3e',
           boxShadow: '0 40px 80px rgba(90,20,160,0.3)',
@@ -266,7 +274,7 @@ export default function HomeClient({ data }: Props) {
             loop
             muted
             playsInline
-            style={{ width: '100%', display: 'block', maxHeight: '520px', objectFit: 'cover' }}
+            style={{ width: '100%', display: 'block', maxHeight: '700px', objectFit: 'cover' }}
           />
         </div>
       </section>
@@ -277,12 +285,14 @@ export default function HomeClient({ data }: Props) {
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
 
             <h2 style={{
+              fontFamily: 'var(--font-heading)',
               textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              fontWeight: 900,
-              color: '#ffffff',
+              fontSize: 'clamp(2rem, 5vw, 3.75rem)',
+              fontWeight: 600,
+              color: '#dde7ff',
               marginBottom: '48px',
               letterSpacing: '-0.01em',
+              textTransform: 'uppercase',
             }}>
               ONE CLICK AT A TIME
             </h2>
@@ -304,11 +314,12 @@ export default function HomeClient({ data }: Props) {
                     style={{
                       padding: '10px 24px',
                       borderRadius: '100px',
-                      border: `2px solid ${activeCategory === cat ? '#00e5c3' : '#2a2a2a'}`,
+                      border: `2px solid ${activeCategory === cat ? '#09ffb5' : '#484848'}`,
                       backgroundColor: 'transparent',
-                      color: activeCategory === cat ? '#00e5c3' : '#ffffff',
+                      color: activeCategory === cat ? '#09ffb5' : '#dde7ff',
+                      fontFamily: 'var(--font-body)',
                       fontSize: '0.875rem',
-                      fontWeight: 500,
+                      fontWeight: 400,
                       cursor: 'pointer',
                       transition: 'all 0.2s',
                       whiteSpace: 'nowrap',
@@ -340,11 +351,11 @@ export default function HomeClient({ data }: Props) {
                   display: 'inline-block',
                   padding: '14px 56px',
                   borderRadius: '100px',
-                  backgroundColor: '#00e5c3',
-                  color: '#000000',
-                  fontWeight: 700,
-                  fontSize: '0.95rem',
-                  letterSpacing: '0.02em',
+                  backgroundImage: CTA_GRADIENT,
+                  color: '#2c2c2c',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: 400,
+                  fontSize: '18px',
                   transition: 'opacity 0.2s',
                 }}
               >
@@ -359,11 +370,13 @@ export default function HomeClient({ data }: Props) {
       <section style={{ backgroundColor: '#000000', padding: '64px 24px' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           <h2 style={{
+            fontFamily: 'var(--font-heading)',
             textAlign: 'center',
             fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
-            fontWeight: 900,
-            color: '#ffffff',
+            fontWeight: 600,
+            color: '#dde7ff',
             marginBottom: '48px',
+            textTransform: 'uppercase',
           }}>
             WHERE TALENT MEETS OPPORTUNITY
           </h2>
@@ -377,22 +390,23 @@ export default function HomeClient({ data }: Props) {
           }}>
             {[
               { name: 'MUSIVV', color: '#9b51e0' },
-              { name: 'LIVENOW', color: '#ffffff' },
-              { name: 'Partner', color: '#333' },
-              { name: 'Partner', color: '#333' },
-              { name: 'Partner', color: '#333' },
+              { name: 'LIVENOW', color: '#dde7ff' },
+              { name: 'Partner', color: '#484848' },
+              { name: 'Partner', color: '#484848' },
+              { name: 'Partner', color: '#484848' },
             ].map((partner, i) => (
               <div key={i} style={{
-                width: '180px',
-                height: '80px',
-                borderRadius: '14px',
-                backgroundColor: '#0d0d0d',
-                border: `1px solid ${partner.color !== '#333' ? '#2a2a2a' : '#1a1a1a'}`,
+                width: '347px',
+                height: '147px',
+                maxWidth: '100%',
+                borderRadius: '30px',
+                backgroundColor: '#252525',
+                border: '1px solid rgba(72,72,72,0.5)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-                <span style={{ color: partner.color, fontWeight: 800, fontSize: '1rem', letterSpacing: '0.05em' }}>
+                <span style={{ color: partner.color, fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.25rem', letterSpacing: '0.05em' }}>
                   {partner.name}
                 </span>
               </div>
@@ -405,10 +419,11 @@ export default function HomeClient({ data }: Props) {
       <section id="pricing" style={{ backgroundColor: '#000000', padding: '96px 24px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h2 style={{
+            fontFamily: 'var(--font-heading)',
             textAlign: 'center',
             fontSize: 'clamp(1.75rem, 4vw, 3rem)',
-            fontWeight: 700,
-            color: '#ffffff',
+            fontWeight: 600,
+            color: '#dde7ff',
             lineHeight: 1.2,
             marginBottom: '64px',
           }}>
@@ -457,7 +472,7 @@ export default function HomeClient({ data }: Props) {
             ].map((plan, i) => (
               <div key={i} style={{
                 backgroundColor: '#0d0d0d',
-                border: '1px solid #1f1f1f',
+                border: '1px solid #484848',
                 borderRadius: '24px',
                 padding: '40px 32px',
                 display: 'flex',
@@ -487,8 +502,9 @@ export default function HomeClient({ data }: Props) {
                   padding: '6px 16px',
                   borderRadius: '100px',
                   backgroundColor: '#111',
-                  border: '1px solid #2a2a2a',
+                  border: '1px solid #484848',
                   color: '#9ca3af',
+                  fontFamily: 'var(--font-body)',
                   fontSize: '0.75rem',
                   fontWeight: 600,
                   marginBottom: '24px',
@@ -499,15 +515,16 @@ export default function HomeClient({ data }: Props) {
 
                 {/* Price */}
                 <div style={{ marginBottom: '24px' }}>
-                  <span style={{ fontSize: '3rem', fontWeight: 900, color: '#ffffff' }}>{plan.price}</span>
-                  <span style={{ fontSize: '1rem', color: '#9ca3af', fontWeight: 600 }}>{plan.priceUnit}</span>
+                  <span style={{ fontFamily: 'var(--font-heading)', fontSize: '3rem', fontWeight: 700, color: '#dde7ff' }}>{plan.price}</span>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', color: '#9ca3af', fontWeight: 600 }}>{plan.priceUnit}</span>
                 </div>
 
                 {/* Features */}
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, flex: 1 }}>
                   {plan.features.map((f, j) => (
                     <li key={j} style={{
-                      color: '#d1d5db',
+                      color: '#dde7ff',
+                      fontFamily: 'var(--font-body)',
                       fontSize: '0.875rem',
                       lineHeight: 1.6,
                       padding: '6px 0',
@@ -515,7 +532,7 @@ export default function HomeClient({ data }: Props) {
                       alignItems: 'flex-start',
                       gap: '8px',
                     }}>
-                      <span style={{ color: '#00e5c3', flexShrink: 0, marginTop: '3px' }}>•</span>
+                      <span style={{ color: '#09ffb5', flexShrink: 0, marginTop: '3px' }}>•</span>
                       {f}
                     </li>
                   ))}
@@ -531,10 +548,11 @@ export default function HomeClient({ data }: Props) {
                 display: 'inline-block',
                 padding: '14px 56px',
                 borderRadius: '100px',
-                backgroundColor: '#00e5c3',
-                color: '#000',
-                fontWeight: 700,
-                fontSize: '0.95rem',
+                backgroundImage: CTA_GRADIENT,
+                color: '#2c2c2c',
+                fontFamily: 'var(--font-body)',
+                fontWeight: 400,
+                fontSize: '18px',
               }}
             >
               See More
@@ -560,15 +578,18 @@ export default function HomeClient({ data }: Props) {
           {/* Left: text */}
           <div style={{ flex: '1 1 350px', minWidth: 0 }}>
             <h2 style={{
+              fontFamily: 'var(--font-heading)',
               fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
-              fontWeight: 900,
-              color: '#ffffff',
+              fontWeight: 600,
+              color: '#dde7ff',
               marginBottom: '24px',
+              textTransform: 'uppercase',
             }}>
-              eeMe Subdivison
+              eeMe Subdivision
             </h2>
             <p style={{
               color: '#9ca3af',
+              fontFamily: 'var(--font-body)',
               fontSize: '1rem',
               lineHeight: 1.75,
               marginBottom: '36px',
@@ -583,10 +604,11 @@ export default function HomeClient({ data }: Props) {
                 display: 'inline-block',
                 padding: '13px 40px',
                 borderRadius: '100px',
-                backgroundColor: '#00e5c3',
-                color: '#000',
-                fontWeight: 700,
-                fontSize: '0.9rem',
+                backgroundImage: CTA_GRADIENT,
+                color: '#2c2c2c',
+                fontFamily: 'var(--font-body)',
+                fontWeight: 400,
+                fontSize: '18px',
               }}
             >
               See More
@@ -617,9 +639,10 @@ export default function HomeClient({ data }: Props) {
                 transform: 'translate(-50%, -50%)',
               }}>
                 <span style={{
-                  color: '#ffffff',
+                  color: '#dde7ff',
+                  fontFamily: 'var(--font-heading)',
                   fontSize: bubble.fontSize,
-                  fontWeight: bubble.bold ? 900 : 700,
+                  fontWeight: bubble.bold ? 700 : 600,
                   lineHeight: 1.3,
                   padding: '8px',
                   whiteSpace: 'pre-line',
@@ -638,11 +661,13 @@ export default function HomeClient({ data }: Props) {
           <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
 
             <h2 style={{
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              fontWeight: 900,
-              color: '#ffffff',
+              fontFamily: 'var(--font-heading)',
+              fontSize: 'clamp(2rem, 5vw, 5.0625rem)',
+              fontWeight: 600,
+              color: '#dde7ff',
               marginBottom: '48px',
               letterSpacing: '-0.01em',
+              textTransform: 'uppercase',
             }}>
               HOT STAR NEWS
             </h2>
@@ -658,7 +683,7 @@ export default function HomeClient({ data }: Props) {
                 {/* Featured */}
                 {featuredArticle && (
                   <div style={{ flex: '1 1 380px', minWidth: 0 }}>
-                    <p style={{ color: '#6b7280', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '20px' }}>
+                    <p style={{ color: '#9ca3af', fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '20px' }}>
                       Featured News
                     </p>
                     <FeaturedArticle article={featuredArticle} />
@@ -698,10 +723,11 @@ export default function HomeClient({ data }: Props) {
                   display: 'inline-block',
                   padding: '14px 56px',
                   borderRadius: '100px',
-                  backgroundColor: '#00e5c3',
-                  color: '#000',
-                  fontWeight: 700,
-                  fontSize: '0.95rem',
+                  backgroundImage: CTA_GRADIENT,
+                  color: '#2c2c2c',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: 400,
+                  fontSize: '18px',
                 }}
               >
                 See More
@@ -714,7 +740,7 @@ export default function HomeClient({ data }: Props) {
       {/* ── 7. FOSTERING CONNECTIONS CTA ────────────────────────────── */}
       <section style={{
         padding: '120px 24px',
-        background: 'linear-gradient(135deg, #4a1280 0%, #2d1a70 25%, #0d3a60 60%, #00796b 85%, #00e5c3 100%)',
+        backgroundColor: '#252525',
         position: 'relative',
         overflow: 'hidden',
         textAlign: 'center',
@@ -723,16 +749,17 @@ export default function HomeClient({ data }: Props) {
         <div style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(221,231,255,0.06) 1px, transparent 1px)',
           backgroundSize: '24px 24px',
           pointerEvents: 'none',
         }} />
 
         <div style={{ position: 'relative', maxWidth: '900px', margin: '0 auto' }}>
           <h2 style={{
+            fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(2rem, 6vw, 4.5rem)',
-            fontWeight: 900,
-            color: '#ffffff',
+            fontWeight: 600,
+            color: '#dde7ff',
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
             textTransform: 'uppercase',
