@@ -11,7 +11,6 @@ export default async function HomePage() {
     data = await getHomeData()
   } catch (err) {
     console.error('[HomePage] getHomeData threw:', err)
-    data = { _debug: `getHomeData threw: ${String(err)}` } as HomeData
   }
 
   return <HomeClient data={data} />
