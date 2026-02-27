@@ -10,6 +10,105 @@ import { STORAGE_URL } from '@/lib/types'
 
 const CTA_GRADIENT = 'linear-gradient(90deg, #09ffb5 0%, #09fff5 42%, #6995ff 79.5%, #8728ff 100%)'
 
+// ─── Orbital Bubble Diagram ───────────────────────────────────────────────────
+
+function OrbitalDiagram() {
+  const S = 480        // container px
+  const cR = 105       // center circle radius
+  const oR = 178       // orbit radius
+  const sR = 50        // satellite radius
+
+  const sats = [
+    { label: 'ORIGINAL',    angle: 335 },
+    { label: 'LOVE\nTALENT', angle: 42  },
+    { label: 'RAW\nTALENT',  angle: 215 },
+    { label: 'CARES',        angle: 90  },
+  ]
+
+  return (
+    <div style={{
+      position: 'relative',
+      width: `${S}px`,
+      height: `${S}px`,
+      flexShrink: 0,
+      maxWidth: '100%',
+    }}>
+      {/* Background glow */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'radial-gradient(circle at 52% 50%, rgba(0,200,160,0.12) 0%, transparent 65%)',
+        borderRadius: '50%',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Orbit ring */}
+      <div style={{
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        width: `${oR * 2}px`,
+        height: `${oR * 2}px`,
+        borderRadius: '50%',
+        border: '1px solid rgba(100,220,190,0.22)',
+        transform: 'translate(-50%, -50%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Center bubble — eeMe INNOVATION */}
+      <div style={{
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        width: `${cR * 2}px`,
+        height: `${cR * 2}px`,
+        borderRadius: '50%',
+        background: 'radial-gradient(circle at 38% 33%, #30ead4 0%, #00b8a0 40%, #007060 80%, #003d38 100%)',
+        transform: 'translate(-50%, -50%)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 0 80px rgba(0,210,170,0.45), 0 0 30px rgba(0,210,170,0.2)',
+        zIndex: 2,
+      }}>
+        <span style={{ color: 'rgba(221,231,255,0.75)', fontFamily: 'var(--font-heading)', fontSize: '0.8rem', fontWeight: 400, letterSpacing: '0.06em' }}>eeMe</span>
+        <span style={{ color: '#dde7ff', fontFamily: 'var(--font-heading)', fontSize: '1.4rem', fontWeight: 700, lineHeight: 1.15, letterSpacing: '0.02em' }}>INNOVATION</span>
+      </div>
+
+      {/* Satellite bubbles */}
+      {sats.map((sat, i) => {
+        const rad = (sat.angle * Math.PI) / 180
+        const cx = S / 2 + oR * Math.sin(rad)
+        const cy = S / 2 - oR * Math.cos(rad)
+        return (
+          <div key={i} style={{
+            position: 'absolute',
+            left: `${cx}px`,
+            top: `${cy}px`,
+            width: `${sR * 2}px`,
+            height: `${sR * 2}px`,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle at 38% 33%, #25d4a0 0%, #0d9468 50%, #065040 100%)',
+            transform: 'translate(-50%, -50%)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            boxShadow: '0 0 24px rgba(0,180,130,0.3)',
+            zIndex: 2,
+            padding: '4px',
+          }}>
+            <span style={{ color: 'rgba(221,231,255,0.65)', fontFamily: 'var(--font-heading)', fontSize: '0.45rem', fontWeight: 400, letterSpacing: '0.08em', lineHeight: 1 }}>eeMe</span>
+            <span style={{ color: '#dde7ff', fontFamily: 'var(--font-heading)', fontSize: '0.6rem', fontWeight: 700, lineHeight: 1.25, whiteSpace: 'pre-line' }}>{sat.label}</span>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function imgUrl(path: string | undefined): string | null {
@@ -615,127 +714,100 @@ export default function HomeClient({ data }: Props) {
             </Link>
           </div>
 
-          {/* Right: bubble diagram */}
-          <div style={{ flex: '1 1 350px', position: 'relative', height: '380px' }}>
-            {[
-              { label: 'eeMe\nINNOVATION', size: 180, x: '35%', y: '25%', bg: 'radial-gradient(circle, #5a1ab0 0%, #3a0a90 60%, #200860 100%)', fontSize: '1rem', bold: true },
-              { label: 'eeMe\nORIGINAL', size: 110, x: '70%', y: '5%', bg: 'radial-gradient(circle, #1a9a8a 0%, #0d6060 100%)', fontSize: '0.7rem', bold: false },
-              { label: 'eeMe\nLOVE TALENT', size: 100, x: '72%', y: '45%', bg: 'radial-gradient(circle, #4a15a0 0%, #2d0a70 100%)', fontSize: '0.65rem', bold: false },
-              { label: 'eeMe\nRAW TALENT', size: 100, x: '10%', y: '10%', bg: 'radial-gradient(circle, #0a8a7a 0%, #055050 100%)', fontSize: '0.65rem', bold: false },
-              { label: 'eeMe\nCARES', size: 90, x: '72%', y: '75%', bg: 'radial-gradient(circle, #0a9080 0%, #056060 100%)', fontSize: '0.65rem', bold: false },
-            ].map((bubble, i) => (
-              <div key={i} style={{
-                position: 'absolute',
-                left: bubble.x,
-                top: bubble.y,
-                width: `${bubble.size}px`,
-                height: `${bubble.size}px`,
-                borderRadius: '50%',
-                background: bubble.bg,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                transform: 'translate(-50%, -50%)',
-              }}>
-                <span style={{
-                  color: '#dde7ff',
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: bubble.fontSize,
-                  fontWeight: bubble.bold ? 700 : 600,
-                  lineHeight: 1.3,
-                  padding: '8px',
-                  whiteSpace: 'pre-line',
-                }}>
-                  {bubble.label}
-                </span>
-              </div>
-            ))}
+          {/* Right: orbital bubble diagram */}
+          <div style={{ flex: '1 1 480px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+            <OrbitalDiagram />
           </div>
         </div>
       </section>
 
       {/* ── 6. HOT STAR NEWS ────────────────────────────────────────── */}
-      {articles.length > 0 && (
-        <section style={{ backgroundColor: '#000000', padding: '96px 24px' }}>
-          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+      <section style={{ backgroundColor: '#000000', padding: '96px 24px' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
 
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(2rem, 5vw, 5.0625rem)',
-              fontWeight: 600,
-              color: '#dde7ff',
-              marginBottom: '48px',
-              letterSpacing: '-0.01em',
-              textTransform: 'uppercase',
-            }}>
-              HOT STAR NEWS
-            </h2>
+          <h2 style={{
+            fontFamily: 'var(--font-heading)',
+            fontSize: 'clamp(2rem, 5vw, 5.0625rem)',
+            fontWeight: 600,
+            color: '#dde7ff',
+            marginBottom: '48px',
+            letterSpacing: '-0.01em',
+            textTransform: 'uppercase',
+          }}>
+            HOT STAR NEWS
+          </h2>
 
-            {/* Featured + sidebar layout */}
-            {(featuredArticle || sidebarArticles.length > 0) && (
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '32px',
-                marginBottom: '56px',
-              }}>
-                {/* Featured */}
-                {featuredArticle && (
-                  <div style={{ flex: '1 1 380px', minWidth: 0 }}>
-                    <p style={{ color: '#9ca3af', fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '20px' }}>
-                      Featured News
-                    </p>
-                    <FeaturedArticle article={featuredArticle} />
-                  </div>
-                )}
+          {articles.length > 0 ? (
+            <>
+              {/* Featured + sidebar layout */}
+              {(featuredArticle || sidebarArticles.length > 0) && (
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '32px',
+                  marginBottom: '56px',
+                }}>
+                  {/* Featured */}
+                  {featuredArticle && (
+                    <div style={{ flex: '1 1 380px', minWidth: 0 }}>
+                      <p style={{ color: '#9ca3af', fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '20px' }}>
+                        Featured News
+                      </p>
+                      <FeaturedArticle article={featuredArticle} />
+                    </div>
+                  )}
 
-                {/* Sidebar */}
-                {sidebarArticles.length > 0 && (
-                  <div style={{ flex: '1 1 280px', minWidth: 0, paddingTop: '44px' }}>
-                    {sidebarArticles.map(article => (
-                      <SidebarArticle key={article.id} article={article} />
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+                  {/* Sidebar */}
+                  {sidebarArticles.length > 0 && (
+                    <div style={{ flex: '1 1 280px', minWidth: 0, paddingTop: '44px' }}>
+                      {sidebarArticles.map(article => (
+                        <SidebarArticle key={article.id} article={article} />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
 
-            {/* Grid articles */}
-            {gridArticles.length > 0 && (
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                gap: '32px',
-                marginBottom: '48px',
-              }}>
-                {gridArticles.map(article => (
-                  <GridArticle key={article.id} article={article} />
-                ))}
-              </div>
-            )}
+              {/* Grid articles */}
+              {gridArticles.length > 0 && (
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                  gap: '32px',
+                  marginBottom: '48px',
+                }}>
+                  {gridArticles.map(article => (
+                    <GridArticle key={article.id} article={article} />
+                  ))}
+                </div>
+              )}
+            </>
+          ) : (
+            <p style={{ color: '#484848', fontFamily: 'var(--font-body)', fontSize: '1rem' }}>
+              Check back soon for the latest news.
+            </p>
+          )}
 
-            {/* See More */}
-            <div style={{ textAlign: 'center' }}>
-              <Link
-                href="/talent"
-                style={{
-                  display: 'inline-block',
-                  padding: '14px 56px',
-                  borderRadius: '100px',
-                  backgroundImage: CTA_GRADIENT,
-                  color: '#2c2c2c',
-                  fontFamily: 'var(--font-body)',
-                  fontWeight: 400,
-                  fontSize: '18px',
-                }}
-              >
-                See More
-              </Link>
-            </div>
+          {/* See More */}
+          <div style={{ textAlign: 'center', marginTop: '48px' }}>
+            <Link
+              href="/talent"
+              style={{
+                display: 'inline-block',
+                padding: '14px 56px',
+                borderRadius: '100px',
+                backgroundImage: CTA_GRADIENT,
+                color: '#2c2c2c',
+                fontFamily: 'var(--font-body)',
+                fontWeight: 400,
+                fontSize: '18px',
+              }}
+            >
+              See More
+            </Link>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* ── 7. FOSTERING CONNECTIONS CTA ────────────────────────────── */}
       <section style={{
