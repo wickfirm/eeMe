@@ -14,7 +14,9 @@ export default function TalentCard({ talent }: Props) {
   const lang = i18n.language
 
   const displayName = lang === 'ar' && talent.name_ar ? talent.name_ar : talent.name
-  const imageUrl = talent.image ? `${STORAGE_URL}/${talent.image}` : '/assets/images/placeholder.png'
+  const imageUrl = talent.image
+    ? talent.image.startsWith('http') ? talent.image : `${STORAGE_URL}/${talent.image}`
+    : '/assets/images/placeholder.png'
 
   return (
     <Link

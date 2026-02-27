@@ -1,4 +1,4 @@
-import { supabase } from './supabase'
+import { supabaseAdmin as supabase } from './supabase'
 import type {
   Talent,
   Category,
@@ -88,7 +88,7 @@ async function fetchTalentJunctions(talentId: number) {
   if (catLinks.length) {
     const catIds = catLinks.map(l => Number(l.category_id)).filter(Boolean)
     if (catIds.length) {
-      const { data: cats } = await supabase.from('categories').select('id, name, slug, image').in('id', catIds)
+      const { data: cats } = await supabase.from('categories').select('id, name, slug').in('id', catIds)
       categories = toRows(cats).map(xCategory)
     }
   }
@@ -104,7 +104,6 @@ function xCategory(row: Row): Category {
     name:          j(row.name, 'en'),
     name_ar:       j(row.name, 'ar') || undefined,
     slug:          String(row.slug ?? ''),
-    image:         (row.image as string) || undefined,
     talents_count: (row.talents_count as number) || undefined,
   }
 }
@@ -150,7 +149,7 @@ function xArticle(row: Row, lang = 'en'): TalentArticle {
 export async function getHomeData(): Promise<HomeData & { _debug?: string }> {
   const [talentsRes, catsRes, articlesRes, pageRes] = await Promise.allSettled([
     supabase.from('talents').select(TALENT_SELECT).eq('is_published', 1).eq('is_active', 1).order('id', { ascending: false }).limit(12),
-    supabase.from('categories').select('id, name, slug, image').is('parent_id', null).order('id'),
+    supabase.from('categories').select('id, name, slug').is('parent_id', null).order('id'),
     supabase.from('articles').select('id, title, slug, content, image, created_at').eq('is_published', 1).order('created_at', { ascending: false }).limit(6),
     supabase.from('pages').select('id, slug, title, content').eq('slug', 'home').maybeSingle(),
   ])
@@ -346,13 +345,13 @@ export async function getLatestArticles() {
 // ─── Categories ───────────────────────────────────────────────────────────────
 
 export async function getCategories() {
-  const { data, error } = await supabase.from('categories').select('id, name, slug, image').is('parent_id', null).order('id')
+  const { data, error } = await supabase.from('categories').select('id, name, slug').is('parent_id', null).order('id')
   if (error) return []
   return toRows(data).map(xCategory)
 }
 
 export async function getCategory(slug: string) {
-  const { data: catRow, error } = await supabase.from('categories').select('id, name, slug, image').eq('slug', slug).maybeSingle()
+  const { data: catRow, error } = await supabase.from('categories').select('id, name, slug').eq('slug', slug).maybeSingle()
   if (error || !catRow) return { category: null, talents: [] }
 
   const category = xCategory(toRow(catRow))
@@ -418,7 +417,7 @@ export async function getVideoPreview(code: string) {
 
 export async function getOnboardingData() {
   const [catRes, occRes] = await Promise.allSettled([
-    supabase.from('categories').select('id, name, slug, image').is('parent_id', null).order('id'),
+    supabase.from('categories').select('id, name, slug').is('parent_id', null).order('id'),
     supabase.from('occasions').select('id, name').order('id'),
   ])
 

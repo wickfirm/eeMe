@@ -17,20 +17,9 @@ export default function HomeClient({ data }: Props) {
   const talents: Talent[] = data?.talents ?? []
   const articles: TalentArticle[] = data?.articles ?? []
   const page = data?.page ?? null
-  const dbError = data?._debug
 
   return (
     <div style={{ backgroundColor: 'var(--color-bg)' }}>
-
-      {/* DB diagnostic banner — remove once data is flowing */}
-      {(dbError || (talents.length === 0 && articles.length === 0)) && (
-        <div style={{ background: '#1a1a2e', color: '#ff6b6b', padding: '12px 24px', fontFamily: 'monospace', fontSize: '13px', borderBottom: '1px solid #ff6b6b33' }}>
-          <strong>⚠ DB STATUS:</strong>{' '}
-          {dbError
-            ? dbError
-            : 'Queries returned 0 results. Check Vercel env vars (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY) and run: SELECT COUNT(*) FROM talents WHERE is_published=1 AND is_active=1'}
-        </div>
-      )}
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
