@@ -17,9 +17,18 @@ export default function HomeClient({ data }: Props) {
   const talents: Talent[] = data?.talents ?? []
   const articles: TalentArticle[] = data?.articles ?? []
   const page = data?.page ?? null
+  const dbError = data?._debug
 
   return (
     <div style={{ backgroundColor: 'var(--color-bg)' }}>
+
+      {/* Temp debug — remove once data is confirmed stable */}
+      {(dbError || talents.length === 0) && (
+        <div style={{ background: '#1a1a2e', color: '#ff6b6b', padding: '10px 24px', fontFamily: 'monospace', fontSize: '12px' }}>
+          <strong>DEBUG:</strong>{' '}
+          {dbError ?? `talents=0 | articles=${articles.length} | check Vercel logs`}
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
