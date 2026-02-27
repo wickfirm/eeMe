@@ -41,8 +41,9 @@ const sdOne = (r: SBResult): Row|null => r.status === 'fulfilled' && !r.value.er
 
 // ─── Flat SELECT — no FK joins (FK constraints absent in this schema) ─────────
 // is_published / is_active are smallint (1/0), NOT boolean
+// cover_image omitted — column was not present in DB schema diagnostic
 const TALENT_SELECT =
-  'id, user_id, slug, image, cover_image, description, ' +
+  'id, user_id, slug, image, description, ' +
   'is_available, is_verified, is_active, is_published'
 
 // ─── Batch-fetch users by IDs → { [userId]: Row } ────────────────────────────
