@@ -132,15 +132,16 @@ function xTalent(
   }
 }
 
-function xArticle(row: Row, lang = 'en'): TalentArticle {
+function xArticle(row: Row, lang = 'en', talent?: Talent): TalentArticle {
   return {
     id:         Number(row.id),
     title:      j(row.title, lang),
     title_ar:   j(row.title, 'ar') || undefined,
-    slug:       String(row.slug ?? ''),
+    slug:       j(row.slug, lang) || j(row.slug, 'en') || String(row.slug ?? ''),
     body:       j(row.content, lang) || undefined,
     image:      (row.image as string) || undefined,
     created_at: String(row.created_at ?? ''),
+    talent,
   }
 }
 
@@ -150,12 +151,24 @@ export async function getHomeData(): Promise<HomeData> {
   const [talentsRes, catsRes, articlesRes, pageRes] = await Promise.allSettled([
     supabase.from('talents').select(TALENT_SELECT).eq('is_published', 1).eq('is_active', 1).order('id', { ascending: false }).limit(12),
     supabase.from('categories').select('id, name, slug').is('parent_id', null).order('id'),
-    supabase.from('articles').select('id, title, slug, content, image, created_at').eq('is_published', 1).order('created_at', { ascending: false }).limit(6),
+    supabase.from('articles').select('id, title, slug, content, image, created_at, talent_id').eq('is_published', 1).order('created_at', { ascending: false }).limit(18),
     supabase.from('pages').select('id, slug, title, content').eq('slug', 'home').maybeSingle(),
   ])
 
-  const talentRows = sd(talentsRes)
-  const userMap    = await userMapFromTalents(talentRows)
+  const talentRows  = sd(talentsRes)
+  const articleRows = sd(articlesRes)
+
+  // Batch-fetch talent data for articles (for article card attribution)
+  const articleTalentIds = Array.from(new Set(articleRows.map(r => Number(r.talent_id)).filter(Boolean)))
+  let articleTalentMap: Record<number, Talent> = {}
+  if (articleTalentIds.length) {
+    const { data: aTalentData } = await supabase.from('talents').select(TALENT_SELECT).in('id', articleTalentIds)
+    const aTalentRows = toRows(aTalentData)
+    const aTalentUserMap = await userMapFromTalents(aTalentRows)
+    for (const t of aTalentRows) articleTalentMap[Number(t.id)] = xTalent(t, 'en', aTalentUserMap)
+  }
+
+  const userMap = await userMapFromTalents(talentRows)
 
   const p = sdOne(pageRes)
   const page: Page | undefined = p ? {
@@ -170,7 +183,7 @@ export async function getHomeData(): Promise<HomeData> {
   return {
     talents:    talentRows.map(r => xTalent(r, 'en', userMap)),
     categories: sd(catsRes).map(xCategory),
-    articles:   sd(articlesRes).map(r => xArticle(r)),
+    articles:   articleRows.map(r => xArticle(r, 'en', articleTalentMap[Number(r.talent_id)])),
     page,
   }
 }
